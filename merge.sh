@@ -12,6 +12,7 @@ git checkout master
 # reset to clean
 git reset --hard
 # remove untracked files
-git clean -fdx
+git clean -fd
 git checkout develop output/
+git mv -f output/* .
 git commit -m "$message"
