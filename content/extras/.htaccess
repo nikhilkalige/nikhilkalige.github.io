@@ -1,0 +1,16 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+#RewriteRule .* p1.html
+#DirectoryIndex p1.html index.html
+# Remove trailing slashes.
+# e.g. example.com/foo/ will redirect to example.com/foo
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=permanent,QSA]
+
+# Redirect to HTML if it exists.
+# e.g. example.com/foo will display the contents of example.com/foo.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L,QSA]
