@@ -19,5 +19,7 @@ git clean -fd
 # git checkout develop output/
 # git mv -f output/* .
 git stash pop
+rsync -a output/ .
+rm -r output
 git add -A
 git commit -m "$message"
