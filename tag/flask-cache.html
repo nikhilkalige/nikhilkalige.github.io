@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>ShortCircuits - Flask-cache</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/index.min.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content=" Shortcircuits is my personal portfolio to showcase my projects and a place to write about stuff when i feel like it. ">
+    <meta name="keywords" content="">
+    <meta name="author" content="Nikhil K">
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/WebPage">
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -20,11 +24,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
     <div class="wrapper">
         <header>
-            <a class="title" href="/">
+            <a class="title" href="/" itemprop="url">
                 <span>Short</span><span>Circuits</span>
                 <img class= "logo2" alt="site-logo" src="/static/images/logo.png">
             </a>
-            <nav>
+            <nav itemprop="breadcrumb">
                 <a href="/">Projects</a>
                 <a href="/about">About</a>
                 <a href="/contact">Contact</a>
@@ -32,7 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="clearfix"></div>
         </header>
 
-        <section id="container">
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
 <div class="article-tag-copy">
     <p>
         Following articles are tagged
@@ -43,19 +47,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </p>
 </div>
 <ul class="post-list">
-<li class="blog-post">
-    <h1 class="title">
+<li class="blog-post" itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
         <a href="/flask-cache-dynamic-timeout.html">Flask-Cache dynamic timeout</a>
     </h1>
-    <p><p>Setting dynamic timeouts for cached flask view functions</p></p>
     <div class="meta-info">
         <div class="post-date">
-            <span>January 23, 2015</span>
+            <span>
+                <time itemprop="dateCreated" datetime="2015-02-20">
+                    February 20, 2015
+                </time>
+            </span>
         </div>
     <ul class="article-tag">
-        <li><a href="/tag/python.html">Python</a></li>
-        <li><a href="/tag/flask.html">Flask</a></li>
-        <li><a href="/tag/flask-cache.html">Flask-cache</a></li>
+        <li itemprop="keywords"><a href="/tag/python.html">Python</a></li>
+        <li itemprop="keywords"><a href="/tag/flask.html">Flask</a></li>
+        <li itemprop="keywords"><a href="/tag/flask-cache.html">Flask-cache</a></li>
     </ul>
     </div>
 </li></ul>
@@ -65,7 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <footer>
-        Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io">Github</a>
+        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
     </footer>
 </body>
 </html>

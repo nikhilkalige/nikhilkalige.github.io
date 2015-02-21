@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Flask-Cache dynamic timeout</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/index.min.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Setting dynamic timeouts for cached flask view functions">
+    <meta name="keywords" content="Python,Flask,Flask-cache">
+    <meta name="author" content="Nikhil K">
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/WebPage">
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -20,11 +24,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
     <div class="wrapper">
         <header>
-            <a class="title" href="/">
+            <a class="title" href="/" itemprop="url">
                 <span>Short</span><span>Circuits</span>
                 <img class= "logo2" alt="site-logo" src="/static/images/logo.png">
             </a>
-            <nav>
+            <nav itemprop="breadcrumb">
                 <a href="/">Projects</a>
                 <a href="/about">About</a>
                 <a href="/contact">Contact</a>
@@ -32,9 +36,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="clearfix"></div>
         </header>
 
-        <section id="container">
-<article>
-    <h1 class="title">
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
         <a href="/flask-cache-dynamic-timeout.html" rel="bookmark"
            title="Permalink to Flask-Cache dynamic timeout">Flask-Cache dynamic timeout</a>
     </h1>
@@ -42,16 +46,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="post-header">
         <div class="meta-info">
             <div class="post-date">
-                <span>Fri 13 February 2015</span>
+                <span>
+                    <time itemprop="dateCreated" datetime="2015-02-20">
+                        February 20, 2015
+                    </time>
+                </span>
             </div>
     <ul class="article-tag">
-        <li><a href="/tag/python.html">Python</a></li>
-        <li><a href="/tag/flask.html">Flask</a></li>
-        <li><a href="/tag/flask-cache.html">Flask-cache</a></li>
+        <li itemprop="keywords"><a href="/tag/python.html">Python</a></li>
+        <li itemprop="keywords"><a href="/tag/flask.html">Flask</a></li>
+        <li itemprop="keywords"><a href="/tag/flask-cache.html">Flask-cache</a></li>
     </ul>
         </div>
     </div>
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
         <p>If you have used <a href="http://flask.pocoo.org/" title="Flask">Flask</a> and are in need of caching views, then you will be familiar with <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a>. <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> provides you with a very simple interface in order to setup cache for your application.</p>
 <p><a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> extension provides you with a way to set a specific time-out for your view function when you enable cache for that view as follows.</p>
 <div class="highlight"><pre><span class="nd">@cache.cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -116,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <footer>
-        Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io">Github</a>
+        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
     </footer>
 </body>
 </html>
