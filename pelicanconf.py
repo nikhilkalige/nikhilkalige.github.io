@@ -34,6 +34,7 @@ CSS_FILE = "index.min.css"
 
 DEFAULT_DATE = 'fs'
 
+DIRECT_TEMPLATES = ('index', 'tags')
 JINJA_EXTENSIONS = ['jinja2.ext.loopcontrols', 'jinja2.ext.with_', 'jinja2.ext.do']
 JINJA_FILTERS = {
     "gtag": filter_tags.group_tags
