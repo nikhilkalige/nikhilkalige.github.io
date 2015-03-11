@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SMS Motor Contoller | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://shortcircuits.io/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="SMS Motor Controller is a product that can be used to control and monitor the status of a motor.">
+    <meta name="keywords" content="Product,Hardware,Arduino,PCB,PHP,IOT">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="wrapper">
+        <header>
+            <a class="title" href="http://shortcircuits.io/" itemprop="url">
+                <span>Short</span><span>Circuits</span>
+                <img class= "logo2" alt="site-logo" src="http://shortcircuits.io/static/images/logo.png">
+            </a>
+            <nav itemprop="breadcrumb">
+                <a href="http://shortcircuits.io/projects">Projects</a>
+                <a href="http://shortcircuits.io/about">About</a>
+                <a href="http://shortcircuits.io/contact">Contact</a>
+            </nav>
+            <div class="clearfix"></div>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
+        <a href="http://shortcircuits.io/sms-motor-controller.html" rel="bookmark"
+           title="Permalink to SMS Motor Contoller"><span class="caps">SMS</span> Motor&nbsp;Contoller</a>
+    </h1>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span>
+                    <time itemprop="dateCreated" datetime="2015-03-10">
+                        March 10, 2015
+                    </time>
+                </span>
+            </div>
+    <ul class="article-tag">
+        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/product.html">Product</a></li>
+        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/hardware.html">Hardware</a></li>
+        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/arduino.html">Arduino</a></li>
+        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/pcb.html">PCB</a></li>
+        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/php.html">PHP</a></li>
+        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/iot.html">IOT</a></li>
+    </ul>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p>3 phase <span class="caps">SMS</span> based motor controller is a product that can be used to control and monitor the status of a irrigation motor(can be used to control anything, but it was targeted to control irrigation motors).
+<img alt="SMS Controller Product Image" src="http://shortcircuits.io/images/sms_controller/final1.jpg" /></p>
+<p>The product specifications is listed&nbsp;below</p>
+<ul>
+<li>3 Phase Motor&nbsp;Control</li>
+<li>3 Phase voltage&nbsp;monitoring</li>
+<li>Current measurement along 1 phase&nbsp;line</li>
+<li>Dry run&nbsp;protection</li>
+<li><span class="caps">TCP</span> based&nbsp;boot-loader</li>
+<li>Stats logging using <span class="caps">TCP</span> (<span class="caps">IOT</span>)</li>
+</ul>
+<p>Below is a rant on what went into designing this&nbsp;board.</p>
+<h2>Motivation</h2>
+<p>This was mainly designed owing to my fathers pressure. We pump water to our farm from a far off place and owing to the huge amount of power outages, monitoring and controlling the motor is a huge burden. So in order to make this task less of a burden I started this design which started from a simple idea to almost a quality&nbsp;product.</p>
+<h2>Design</h2>
+<ol>
+<li>I started the project during the end of my college, during which my knowledge of C programming was very poor. At that point my feeling was that Assembly programming was easier than C&nbsp;:).</li>
+<li>So this project started with me writing pages and pages of assembly code for Atmel based <span class="caps">AVR128</span>&nbsp;micro-controller.</li>
+<li>After I started working in the industry, I became familiar with <a href="http://www.arduino.cc/">Arduino</a> and other projects and I felt that assembly was difficult to maintain and I started rewriting the code in&nbsp;C.</li>
+</ol>
+<h2>Software</h2>
+<p>Let us split the software part of the system into multiple&nbsp;parts.</p>
+<h3>1. Boot&nbsp;loader</h3>
+<p>I needed a boot-loader for my system. For daily development and debugging nothing is better than the <a href="http://www.arduino.cc/">arduino</a> boot-loader. But once the system was deployed in the field, I wanted a automated system in-order to provide updates and fix bugs. Since the board had <span class="caps">GSM</span> on it, using <span class="caps">GPRS</span> was the way to go. I then decided on using <span class="caps">TCP</span> based protocol in order to perform a Over the air programming (<span class="caps">OTP</span>) system for the device. The code can be found <a href="https://github.com/NikhilKalige/arduino_gsm_tcp_bootloader">here</a>.</p>
+<p>Once this system was implemented I felt that I should be able to track all the devices in the field and be able to see which devices are which version of the firmware. This meant I had to build a web application. Back then I choose to make use of <span class="caps">PHP</span> and the best options then were <a href="http://www.codeigniter.com/">CodeIgnitor</a> and <a href="http://cakephp.org/">CakePHP</a>. I went ahead with <a href="http://cakephp.org/">CakePHP</a> and built a website, the source code can be found <a href="https://bitbucket.org/nikhilkalige/motor-website">here</a>.</p>
+<h3>2. Main&nbsp;Application</h3>
+<p>I choose to write the application code from scratch rather then going ahead using <a href="http://www.arduino.cc/">arduino</a> core. I have always felt that I have more control over the system when bare bones C code is used. During the whole process of building the code, I went through in two iterations. For the first time, I wrote without using any frameworks, but when I finished the first round of coding, I came across a <span class="caps">UML</span> based framework called <a href="http://www.state-machine.com/">Quantum Leaps</a> for writing event driven code using <span class="caps">UML</span> based&nbsp;diagrams.</p>
+<p>Event driven systems usually make you go crazy, when you start building event driven systems it is usually very difficult to create a picture in your brain. But luckily I got a quick boost and I would like to thank <em>RicardoRaup</em> for&nbsp;that.</p>
+<p><span class="caps">GSM</span>  based systems usually have lots of <span class="caps">AT</span> commands which are usually strings and they usually tend to eat a lot of memory. This was true in my case too, so I had to optimize the usage of memory to fit in the whole code with lots of features and also make room for the&nbsp;boot-loader.</p>
+<h3>3.&nbsp;Features</h3>
+<p>I wanted to add a lot of features into the system in order to provide the user with more control, but in the end I had to make a call as to what I should include and what not. Some the features are listed&nbsp;below.</p>
+<ul>
+<li>Multiple user access with&nbsp;authentication</li>
+<li>System turn on and&nbsp;off</li>
+<li>System status monitoring with ability to set auto&nbsp;updates</li>
+<li>Posting system data to <a href="https://xively.com/">Xively </a></li>
+<li>Dry run&nbsp;protection</li>
+</ul>
+<h2>Hardware</h2>
+<p>The hardware design of the system went thought multiple iterations before it was frozen to go into production. So lets break the system into&nbsp;points.</p>
+<ul>
+<li><strong>Power section:</strong> It first designed with a buck boost regulator. The <span class="caps">GSM</span> module consumes a lot of power in bursts, so design of the power system was crucial. But prototype designed had lots of noise issues, so I then decided to make use of two linear regulators from <a href="http://micrel.com/index.php/products/power-management-ics/ldos/single-ldos/article/134.html"><span class="caps">MICREL</span> 29302</a> in order to generate multiple power rails +3v and&nbsp;+5v.</li>
+<li><strong>Microcontroller:</strong> Since the prototype of the system was done using Arduino Uno, I choose to use <a href="http://www.atmel.com/devices/atmega328p.aspx">ATMEGA328p</a> in <span class="caps">TQFP</span> package. The controller runs at 16&nbsp;Mhz.</li>
+<li><strong><span class="caps">GSM</span>:</strong> <span class="caps">SIM900A</span> from Simcom was used the <span class="caps">GSM</span> module in the system. This module is dual band module. This module has a <span class="caps">RTC</span> built in and I made use of this rather than adding one more&nbsp;component.</li>
+<li><strong>Monitoring:</strong> The voltage monitoring section was built using resistor dividers and varistors were added for protection. In order to monitor the current along one phase, I used a current&nbsp;transformer.</li>
+</ul>
+<h2>Manufacturing</h2>
+<p>For designing the <span class="caps">PCB</span> for the system, I learnt a multitude of software&#8217;s owing to my stupidity. I stated with <a href="http://www.cadsoftusa.com/">Eagle</a>, but my company used <a href="http://www.orcad.com/">OrCAD</a>, so I switched. Later I found that <a href="http://www.altium.com/altium-designer/overview">Altium</a> is very good too and again I switched and started from scratch. And finally I switched back again to <a href="http://www.cadsoftusa.com/">Eagle</a>.</p>
+<p>For the prototype board, I went ahead and made them myself using home made ironing and ferric chloride based etching. After having etched so many boards, the practice made be capable of etching pcbs with traces as small as 5 mils. The results of this can be seen below.
+<img alt="Prototype PCB Front" src="http://shortcircuits.io/images/sms_controller/proto_front.jpg" />
+<img alt="Prototype PCB Back" src="http://shortcircuits.io/images/sms_controller/proto_back.jpg" /></p>
+<p>So when I was finally ready to go for production, I made use of <a href="http://www.seeedstudio.com/service/index.php?r=pcb">Fusion <span class="caps">PCB</span> service</a> of <a href="http://www.seeedstudio.com/depot/">Seeedstudio</a> to get them manufactured. The board had so many passives that hand soldering so many of them was a pain in the&nbsp;ass.</p>
+<h2>Name and&nbsp;Logo</h2>
+<p>After much brainstorming with my brother we decided on branding it as <strong><em>&#8220;<span class="caps">AGRI</span> <span class="caps">INNOVATE</span>&#8221;</em></strong>. I would also like to thank Niroop from <a href="http://ironjawstudios.com/">IronJaw Studios</a> for the logo.
+<img alt="AgriInnovate Logo" src="http://shortcircuits.io/images/sms_controller/agri_innovate.jpg" /></p>
+<h2>Conclusion</h2>
+<p>This project was a very good experience for me. It gave me a perspective as to what goes into developing, producing and marketing a hardware based product. I got to understand the various facets of this process having gone through each of these be myself. The project has a lot of room for improvements. I would like to add more memory for the controller and better isolation between the mains if I decide on making one more revision. So this ends the long rant, thank you for your&nbsp;patience.</p>
+    </div>
+</article>
+
+        </section>
+        <div class="push"></div>
+    </div>
+
+    <footer>
+        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
+    </footer>
+</body>
+</html>

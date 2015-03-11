@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Flask-Cache dynamic timeout</title>
+    <title>Flask-Cache dynamic timeout | ShortCircuits</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://shortcircuits.io/static/css/index.min.css"/>
     <link rel="shortcut icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
-    <meta name="description" content="Setting dynamic timeouts for cached flask view functions">
+    <meta name="description" content="Setting dynamic timeouts for cached flask view functions">
     <meta name="keywords" content="Python,Flask,Flask-cache">
     <meta name="author" content="Nikhil K">
 </head>
@@ -29,7 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <img class= "logo2" alt="site-logo" src="http://shortcircuits.io/static/images/logo.png">
             </a>
             <nav itemprop="breadcrumb">
-                <a href="http://shortcircuits.io/">Projects</a>
+                <a href="http://shortcircuits.io/projects">Projects</a>
                 <a href="http://shortcircuits.io/about">About</a>
                 <a href="http://shortcircuits.io/contact">Contact</a>
             </nav>
@@ -40,15 +40,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <article itemscope itemtype="http://schema.org/Article">
     <h1 class="title" itemprop="name">
         <a href="http://shortcircuits.io/flask-cache-dynamic-timeout.html" rel="bookmark"
-           title="Permalink to Flask-Cache dynamic timeout">Flask-Cache dynamic timeout</a>
+           title="Permalink to Flask-Cache dynamic timeout">Flask-Cache dynamic&nbsp;timeout</a>
     </h1>
 
     <div class="post-header">
         <div class="meta-info">
             <div class="post-date">
                 <span>
-                    <time itemprop="dateCreated" datetime="2015-02-20">
-                        February 20, 2015
+                    <time itemprop="dateCreated" datetime="2015-03-01">
+                        March 01, 2015
                     </time>
                 </span>
             </div>
@@ -60,15 +60,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
     <div class="post-body" itemprop="articleBody">
-        <p>If you have used <a href="http://flask.pocoo.org/" title="Flask">Flask</a> and are in need of caching views, then you will be familiar with <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a>. <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> provides you with a very simple interface in order to setup cache for your application.</p>
-<p><a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> extension provides you with a way to set a specific time-out for your view function when you enable cache for that view as follows.</p>
+        <p>If you have used <a href="http://flask.pocoo.org/" title="Flask">Flask</a> and are in need of caching views, then you will be familiar with <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a>. <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> provides you with a very simple interface in order to setup cache for your&nbsp;application.</p>
+<p><a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> extension provides you with a way to set a specific time-out for your view function when you enable cache for that view as&nbsp;follows.</p>
 <div class="highlight"><pre><span class="nd">@cache.cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
   <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
 </pre></div>
 
 
-<p>But it does not provide you the ability to set time-outs dynamically. I came across a use case where I was calling a view function with different parameters and wanted the view to be cached until a fixed specific time and in my case it was midnight.</p>
+<p>But it does not provide you the ability to set time-outs dynamically. I came across a use case where I was calling a view function with different parameters and wanted the view to be cached until a fixed specific time and in my case it was&nbsp;midnight.</p>
 <p>Below is the implementation of the cached decorator in <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a></p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">cached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">key_prefix</span><span class="o">=</span><span class="s">&#39;view/</span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">unless</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
@@ -91,8 +91,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 
 
-<p>You can see that the decorator directly passes the <code>timeout</code> parameter as a parameter to the <code>cache.set</code> function. So this removes the possibility of passing a function to dynamically set the timeout.</p>
-<p>So I decided to write a decorator which decorates the <code>cached</code> decorator. Below is the decorator function I wrote that sets the time-out to 23:59 hours.</p>
+<p>You can see that the decorator directly passes the <code>timeout</code> parameter as a parameter to the <code>cache.set</code> function. So this removes the possibility of passing a function to dynamically set the&nbsp;timeout.</p>
+<p>So I decided to write a decorator which decorates the <code>cached</code> decorator. Below is the decorator function I wrote that sets the time-out to 23:59&nbsp;hours.</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">cache_timeout</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">decorated_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -105,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 
 
-<p>The <code>cache_timeout</code> decorator can then be used as</p>
+<p>The <code>cache_timeout</code> decorator can then be used&nbsp;as</p>
 <div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/stats&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;GET&#39;</span><span class="p">])</span>
 <span class="nd">@cache_timeout</span>
 <span class="nd">@cache.cached</span><span class="p">()</span>
@@ -114,8 +114,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 
 
-<p>Please note that location of <code>@cache_timeout</code> and <code>@cache.cached()</code> cannot be interchanged.</p>
-<p>Currently the decorator does not accept any parameters, but it can be easily extended to include parameters and perform cache time-out operations to your satisfaction.</p>
+<p>Please note that location of <code>@cache_timeout</code> and <code>@cache.cached()</code> cannot be&nbsp;interchanged.</p>
+<p>Currently the decorator does not accept any parameters, but it can be easily extended to include parameters and perform cache time-out operations to your&nbsp;satisfaction.</p>
     </div>
 </article>
 

@@ -1,13 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>ShortCircuits</title><link href="http://shortcircuits.io/" rel="alternate"></link><link href="http://shortcircuits.io/feeds/all.atom.xml" rel="self"></link><id>http://shortcircuits.io/</id><updated>2015-02-20T23:59:56-07:00</updated><entry><title>Flask-Cache dynamic timeout</title><link href="http://shortcircuits.io/flask-cache-dynamic-timeout.html" rel="alternate"></link><updated>2015-02-20T23:59:56-07:00</updated><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-02-20:flask-cache-dynamic-timeout.html</id><summary type="html">&lt;p&gt;If you have used &lt;a href="http://flask.pocoo.org/" title="Flask"&gt;Flask&lt;/a&gt; and are in need of caching views, then you will be familiar with &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt;. &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt; provides you with a very simple interface in order to setup cache for your application.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt; extension provides you with a way to set a specific time-out for your view function when you enable cache for that view as follows.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>ShortCircuits</title><link href="http://shortcircuits.io/" rel="alternate"></link><link href="http://shortcircuits.io/feeds/all.atom.xml" rel="self"></link><id>http://shortcircuits.io/</id><updated>2015-03-10T22:55:58-07:00</updated><entry><title>SMS Motor Contoller</title><link href="http://shortcircuits.io/sms-motor-controller.html" rel="alternate"></link><updated>2015-03-10T22:55:58-07:00</updated><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-03-10:sms-motor-controller.html</id><summary type="html">&lt;p&gt;3 phase &lt;span class="caps"&gt;SMS&lt;/span&gt; based motor controller is a product that can be used to control and monitor the status of a irrigation motor(can be used to control anything, but it was targeted to control irrigation motors).
+&lt;img alt="SMS Controller Product Image" src="http://shortcircuits.io/images/sms_controller/final1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The product specifications is listed&amp;nbsp;below&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3 Phase Motor&amp;nbsp;Control&lt;/li&gt;
+&lt;li&gt;3 Phase voltage&amp;nbsp;monitoring&lt;/li&gt;
+&lt;li&gt;Current measurement along 1 phase&amp;nbsp;line&lt;/li&gt;
+&lt;li&gt;Dry run&amp;nbsp;protection&lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;TCP&lt;/span&gt; based&amp;nbsp;boot-loader&lt;/li&gt;
+&lt;li&gt;Stats logging using &lt;span class="caps"&gt;TCP&lt;/span&gt; (&lt;span class="caps"&gt;IOT&lt;/span&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Below is a rant on what went into designing this&amp;nbsp;board.&lt;/p&gt;
+&lt;h2&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;This was mainly designed owing to my fathers pressure. We pump water to our farm from a far off place and owing to the huge amount of power outages, monitoring and controlling the motor is a huge burden. So in order to make this task less of a burden I started this design which started from a simple idea to almost a quality&amp;nbsp;product.&lt;/p&gt;
+&lt;h2&gt;Design&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;I started the project during the end of my college, during which my knowledge of C programming was very poor. At that point my feeling was that Assembly programming was easier than C&amp;nbsp;:).&lt;/li&gt;
+&lt;li&gt;So this project started with me writing pages and pages of assembly code for Atmel based &lt;span class="caps"&gt;AVR128&lt;/span&gt;&amp;nbsp;micro-controller.&lt;/li&gt;
+&lt;li&gt;After I started working in the industry, I became familiar with &lt;a href="http://www.arduino.cc/"&gt;Arduino&lt;/a&gt; and other projects and I felt that assembly was difficult to maintain and I started rewriting the code in&amp;nbsp;C.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Software&lt;/h2&gt;
+&lt;p&gt;Let us split the software part of the system into multiple&amp;nbsp;parts.&lt;/p&gt;
+&lt;h3&gt;1. Boot&amp;nbsp;loader&lt;/h3&gt;
+&lt;p&gt;I needed a boot-loader for my system. For daily development and debugging nothing is better than the &lt;a href="http://www.arduino.cc/"&gt;arduino&lt;/a&gt; boot-loader. But once the system was deployed in the field, I wanted a automated system in-order to provide updates and fix bugs. Since the board had &lt;span class="caps"&gt;GSM&lt;/span&gt; on it, using &lt;span class="caps"&gt;GPRS&lt;/span&gt; was the way to go. I then decided on using &lt;span class="caps"&gt;TCP&lt;/span&gt; based protocol in order to perform a Over the air programming (&lt;span class="caps"&gt;OTP&lt;/span&gt;) system for the device. The code can be found &lt;a href="https://github.com/NikhilKalige/arduino_gsm_tcp_bootloader"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once this system was implemented I felt that I should be able to track all the devices in the field and be able to see which devices are which version of the firmware. This meant I had to build a web application. Back then I choose to make use of &lt;span class="caps"&gt;PHP&lt;/span&gt; and the best options then were &lt;a href="http://www.codeigniter.com/"&gt;CodeIgnitor&lt;/a&gt; and &lt;a href="http://cakephp.org/"&gt;CakePHP&lt;/a&gt;. I went ahead with &lt;a href="http://cakephp.org/"&gt;CakePHP&lt;/a&gt; and built a website, the source code can be found &lt;a href="https://bitbucket.org/nikhilkalige/motor-website"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;2. Main&amp;nbsp;Application&lt;/h3&gt;
+&lt;p&gt;I choose to write the application code from scratch rather then going ahead using &lt;a href="http://www.arduino.cc/"&gt;arduino&lt;/a&gt; core. I have always felt that I have more control over the system when bare bones C code is used. During the whole process of building the code, I went through in two iterations. For the first time, I wrote without using any frameworks, but when I finished the first round of coding, I came across a &lt;span class="caps"&gt;UML&lt;/span&gt; based framework called &lt;a href="http://www.state-machine.com/"&gt;Quantum Leaps&lt;/a&gt; for writing event driven code using &lt;span class="caps"&gt;UML&lt;/span&gt; based&amp;nbsp;diagrams.&lt;/p&gt;
+&lt;p&gt;Event driven systems usually make you go crazy, when you start building event driven systems it is usually very difficult to create a picture in your brain. But luckily I got a quick boost and I would like to thank &lt;em&gt;RicardoRaup&lt;/em&gt; for&amp;nbsp;that.&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;GSM&lt;/span&gt;  based systems usually have lots of &lt;span class="caps"&gt;AT&lt;/span&gt; commands which are usually strings and they usually tend to eat a lot of memory. This was true in my case too, so I had to optimize the usage of memory to fit in the whole code with lots of features and also make room for the&amp;nbsp;boot-loader.&lt;/p&gt;
+&lt;h3&gt;3.&amp;nbsp;Features&lt;/h3&gt;
+&lt;p&gt;I wanted to add a lot of features into the system in order to provide the user with more control, but in the end I had to make a call as to what I should include and what not. Some the features are listed&amp;nbsp;below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Multiple user access with&amp;nbsp;authentication&lt;/li&gt;
+&lt;li&gt;System turn on and&amp;nbsp;off&lt;/li&gt;
+&lt;li&gt;System status monitoring with ability to set auto&amp;nbsp;updates&lt;/li&gt;
+&lt;li&gt;Posting system data to &lt;a href="https://xively.com/"&gt;Xively &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dry run&amp;nbsp;protection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;The hardware design of the system went thought multiple iterations before it was frozen to go into production. So lets break the system into&amp;nbsp;points.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Power section:&lt;/strong&gt; It first designed with a buck boost regulator. The &lt;span class="caps"&gt;GSM&lt;/span&gt; module consumes a lot of power in bursts, so design of the power system was crucial. But prototype designed had lots of noise issues, so I then decided to make use of two linear regulators from &lt;a href="http://micrel.com/index.php/products/power-management-ics/ldos/single-ldos/article/134.html"&gt;&lt;span class="caps"&gt;MICREL&lt;/span&gt; 29302&lt;/a&gt; in order to generate multiple power rails +3v and&amp;nbsp;+5v.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Microcontroller:&lt;/strong&gt; Since the prototype of the system was done using Arduino Uno, I choose to use &lt;a href="http://www.atmel.com/devices/atmega328p.aspx"&gt;ATMEGA328p&lt;/a&gt; in &lt;span class="caps"&gt;TQFP&lt;/span&gt; package. The controller runs at 16&amp;nbsp;Mhz.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;span class="caps"&gt;GSM&lt;/span&gt;:&lt;/strong&gt; &lt;span class="caps"&gt;SIM900A&lt;/span&gt; from Simcom was used the &lt;span class="caps"&gt;GSM&lt;/span&gt; module in the system. This module is dual band module. This module has a &lt;span class="caps"&gt;RTC&lt;/span&gt; built in and I made use of this rather than adding one more&amp;nbsp;component.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring:&lt;/strong&gt; The voltage monitoring section was built using resistor dividers and varistors were added for protection. In order to monitor the current along one phase, I used a current&amp;nbsp;transformer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Manufacturing&lt;/h2&gt;
+&lt;p&gt;For designing the &lt;span class="caps"&gt;PCB&lt;/span&gt; for the system, I learnt a multitude of software&amp;#8217;s owing to my stupidity. I stated with &lt;a href="http://www.cadsoftusa.com/"&gt;Eagle&lt;/a&gt;, but my company used &lt;a href="http://www.orcad.com/"&gt;OrCAD&lt;/a&gt;, so I switched. Later I found that &lt;a href="http://www.altium.com/altium-designer/overview"&gt;Altium&lt;/a&gt; is very good too and again I switched and started from scratch. And finally I switched back again to &lt;a href="http://www.cadsoftusa.com/"&gt;Eagle&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the prototype board, I went ahead and made them myself using home made ironing and ferric chloride based etching. After having etched so many boards, the practice made be capable of etching pcbs with traces as small as 5 mils. The results of this can be seen below.
+&lt;img alt="Prototype PCB Front" src="http://shortcircuits.io/images/sms_controller/proto_front.jpg" /&gt;
+&lt;img alt="Prototype PCB Back" src="http://shortcircuits.io/images/sms_controller/proto_back.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;So when I was finally ready to go for production, I made use of &lt;a href="http://www.seeedstudio.com/service/index.php?r=pcb"&gt;Fusion &lt;span class="caps"&gt;PCB&lt;/span&gt; service&lt;/a&gt; of &lt;a href="http://www.seeedstudio.com/depot/"&gt;Seeedstudio&lt;/a&gt; to get them manufactured. The board had so many passives that hand soldering so many of them was a pain in the&amp;nbsp;ass.&lt;/p&gt;
+&lt;h2&gt;Name and&amp;nbsp;Logo&lt;/h2&gt;
+&lt;p&gt;After much brainstorming with my brother we decided on branding it as &lt;strong&gt;&lt;em&gt;&amp;#8220;&lt;span class="caps"&gt;AGRI&lt;/span&gt; &lt;span class="caps"&gt;INNOVATE&lt;/span&gt;&amp;#8221;&lt;/em&gt;&lt;/strong&gt;. I would also like to thank Niroop from &lt;a href="http://ironjawstudios.com/"&gt;IronJaw Studios&lt;/a&gt; for the logo.
+&lt;img alt="AgriInnovate Logo" src="http://shortcircuits.io/images/sms_controller/agri_innovate.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;This project was a very good experience for me. It gave me a perspective as to what goes into developing, producing and marketing a hardware based product. I got to understand the various facets of this process having gone through each of these be myself. The project has a lot of room for improvements. I would like to add more memory for the controller and better isolation between the mains if I decide on making one more revision. So this ends the long rant, thank you for your&amp;nbsp;patience.&lt;/p&gt;</summary><category term="Product"></category><category term="Hardware"></category><category term="Arduino"></category><category term="PCB"></category><category term="PHP"></category><category term="IOT"></category></entry><entry><title>Flask-Cache dynamic timeout</title><link href="http://shortcircuits.io/flask-cache-dynamic-timeout.html" rel="alternate"></link><updated>2015-03-01T22:54:56-07:00</updated><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-03-01:flask-cache-dynamic-timeout.html</id><summary type="html">&lt;p&gt;If you have used &lt;a href="http://flask.pocoo.org/" title="Flask"&gt;Flask&lt;/a&gt; and are in need of caching views, then you will be familiar with &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt;. &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt; provides you with a very simple interface in order to setup cache for your&amp;nbsp;application.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt; extension provides you with a way to set a specific time-out for your view function when you enable cache for that view as&amp;nbsp;follows.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@cache.cached&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;But it does not provide you the ability to set time-outs dynamically. I came across a use case where I was calling a view function with different parameters and wanted the view to be cached until a fixed specific time and in my case it was midnight.&lt;/p&gt;
+&lt;p&gt;But it does not provide you the ability to set time-outs dynamically. I came across a use case where I was calling a view function with different parameters and wanted the view to be cached until a fixed specific time and in my case it was&amp;nbsp;midnight.&lt;/p&gt;
 &lt;p&gt;Below is the implementation of the cached decorator in &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;cached&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key_prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;view/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unless&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -30,8 +86,8 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;You can see that the decorator directly passes the &lt;code&gt;timeout&lt;/code&gt; parameter as a parameter to the &lt;code&gt;cache.set&lt;/code&gt; function. So this removes the possibility of passing a function to dynamically set the timeout.&lt;/p&gt;
-&lt;p&gt;So I decided to write a decorator which decorates the &lt;code&gt;cached&lt;/code&gt; decorator. Below is the decorator function I wrote that sets the time-out to 23:59 hours.&lt;/p&gt;
+&lt;p&gt;You can see that the decorator directly passes the &lt;code&gt;timeout&lt;/code&gt; parameter as a parameter to the &lt;code&gt;cache.set&lt;/code&gt; function. So this removes the possibility of passing a function to dynamically set the&amp;nbsp;timeout.&lt;/p&gt;
+&lt;p&gt;So I decided to write a decorator which decorates the &lt;code&gt;cached&lt;/code&gt; decorator. Below is the decorator function I wrote that sets the time-out to 23:59&amp;nbsp;hours.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;cache_timeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="nd"&gt;@functools.wraps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorated_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -44,7 +100,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The &lt;code&gt;cache_timeout&lt;/code&gt; decorator can then be used as&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;cache_timeout&lt;/code&gt; decorator can then be used&amp;nbsp;as&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/stats&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="nd"&gt;@cache_timeout&lt;/span&gt;
 &lt;span class="nd"&gt;@cache.cached&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -53,5 +109,5 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Please note that location of &lt;code&gt;@cache_timeout&lt;/code&gt; and &lt;code&gt;@cache.cached()&lt;/code&gt; cannot be interchanged.&lt;/p&gt;
-&lt;p&gt;Currently the decorator does not accept any parameters, but it can be easily extended to include parameters and perform cache time-out operations to your satisfaction.&lt;/p&gt;</summary><category term="Python"></category><category term="Flask"></category><category term="Flask-cache"></category></entry></feed>
+&lt;p&gt;Please note that location of &lt;code&gt;@cache_timeout&lt;/code&gt; and &lt;code&gt;@cache.cached()&lt;/code&gt; cannot be&amp;nbsp;interchanged.&lt;/p&gt;
+&lt;p&gt;Currently the decorator does not accept any parameters, but it can be easily extended to include parameters and perform cache time-out operations to your&amp;nbsp;satisfaction.&lt;/p&gt;</summary><category term="Python"></category><category term="Flask"></category><category term="Flask-cache"></category></entry></feed>
