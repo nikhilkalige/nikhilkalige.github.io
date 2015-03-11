@@ -55,7 +55,7 @@ EXTRA_PATH_METADATA = {
 }
 
 PLUGIN_PATHS = ['/home/lonewolf/workspace/web/pelican-plugins']
-PLUGINS = ['sitemap']
+PLUGINS = ['sitemap', 'optimize_images']
 
 SITEMAP = {
     'format': 'xml',
@@ -70,3 +70,5 @@ SITEMAP = {
         'pages': 'monthly'
     }
 }
+
+TYPOGRIFY = True
