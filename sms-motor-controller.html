@@ -47,8 +47,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="meta-info">
             <div class="post-date">
                 <span>
-                    <time itemprop="dateCreated" datetime="2015-03-10">
-                        March 10, 2015
+                    <time itemprop="dateCreated" datetime="2015-03-11">
+                        March 11, 2015
                     </time>
                 </span>
             </div>
@@ -86,8 +86,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Software</h2>
 <p>Let us split the software part of the system into multiple&nbsp;parts.</p>
 <h3>1. Boot&nbsp;loader</h3>
-<p>I needed a boot-loader for my system. For daily development and debugging nothing is better than the <a href="http://www.arduino.cc/">arduino</a> boot-loader. But once the system was deployed in the field, I wanted a automated system in-order to provide updates and fix bugs. Since the board had <span class="caps">GSM</span> on it, using <span class="caps">GPRS</span> was the way to go. I then decided on using <span class="caps">TCP</span> based protocol in order to perform a Over the air programming (<span class="caps">OTP</span>) system for the device. The code can be found <a href="https://github.com/NikhilKalige/arduino_gsm_tcp_bootloader">here</a>.</p>
-<p>Once this system was implemented I felt that I should be able to track all the devices in the field and be able to see which devices are which version of the firmware. This meant I had to build a web application. Back then I choose to make use of <span class="caps">PHP</span> and the best options then were <a href="http://www.codeigniter.com/">CodeIgnitor</a> and <a href="http://cakephp.org/">CakePHP</a>. I went ahead with <a href="http://cakephp.org/">CakePHP</a> and built a website, the source code can be found <a href="https://bitbucket.org/nikhilkalige/motor-website">here</a>.</p>
+<p>I needed a boot-loader for my system. For daily development and debugging nothing is better than the <a href="http://www.arduino.cc/">arduino</a> boot-loader. But once the system was deployed in the field, I wanted a automated system in-order to provide updates and fix bugs. Since the board had <span class="caps">GSM</span> on it, using <span class="caps">GPRS</span> was the way to go. I then decided on using <span class="caps">TCP</span> based protocol in order to perform a Over the air programming (<span class="caps">OTP</span>) system for the&nbsp;device.</p>
+<p>Once this system was implemented I felt that I should be able to track all the devices in the field and be able to see which devices are which version of the firmware. This meant I had to build a web application. Back then I choose to make use of <span class="caps">PHP</span> and the best options then were <a href="http://www.codeigniter.com/">CodeIgnitor</a> and <a href="http://cakephp.org/">CakePHP</a>. I went ahead with <a href="http://cakephp.org/">CakePHP</a> and built a&nbsp;website.</p>
 <h3>2. Main&nbsp;Application</h3>
 <p>I choose to write the application code from scratch rather then going ahead using <a href="http://www.arduino.cc/">arduino</a> core. I have always felt that I have more control over the system when bare bones C code is used. During the whole process of building the code, I went through in two iterations. For the first time, I wrote without using any frameworks, but when I finished the first round of coding, I came across a <span class="caps">UML</span> based framework called <a href="http://www.state-machine.com/">Quantum Leaps</a> for writing event driven code using <span class="caps">UML</span> based&nbsp;diagrams.</p>
 <p>Event driven systems usually make you go crazy, when you start building event driven systems it is usually very difficult to create a picture in your brain. But luckily I got a quick boost and I would like to thank <em>RicardoRaup</em> for&nbsp;that.</p>
@@ -120,6 +120,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <img alt="AgriInnovate Logo" src="http://shortcircuits.io/images/sms_controller/agri_innovate.jpg" /></p>
 <h2>Conclusion</h2>
 <p>This project was a very good experience for me. It gave me a perspective as to what goes into developing, producing and marketing a hardware based product. I got to understand the various facets of this process having gone through each of these be myself. The project has a lot of room for improvements. I would like to add more memory for the controller and better isolation between the mains if I decide on making one more revision. So this ends the long rant, thank you for your&nbsp;patience.</p>
+<h2>Source&nbsp;Code</h2>
+<ul>
+<li><a href="https://github.com/NikhilKalige/arduino_gsm_tcp_bootloader"><span class="caps">TCP</span> Boot&nbsp;loader</a></li>
+<li><a href="https://bitbucket.org/nikhilkalige/motor-website">Motor&nbsp;Website</a></li>
+<li><a href="https://github.com/NikhilKalige/sms-controller-qp">Firmware based on Quantum&nbsp;Leaps</a></li>
+</ul>
     </div>
 </article>
 
