@@ -30,9 +30,9 @@ This was mainly designed owing to my fathers pressure. We pump water to our farm
 ##Software
 Let us split the software part of the system into multiple parts.
 ###1. Boot loader
-I needed a boot-loader for my system. For daily development and debugging nothing is better than the [arduino](http://www.arduino.cc/) boot-loader. But once the system was deployed in the field, I wanted a automated system in-order to provide updates and fix bugs. Since the board had GSM on it, using GPRS was the way to go. I then decided on using TCP based protocol in order to perform a Over the air programming (OTP) system for the device. The code can be found [here](https://github.com/NikhilKalige/arduino_gsm_tcp_bootloader).
+I needed a boot-loader for my system. For daily development and debugging nothing is better than the [arduino](http://www.arduino.cc/) boot-loader. But once the system was deployed in the field, I wanted a automated system in-order to provide updates and fix bugs. Since the board had GSM on it, using GPRS was the way to go. I then decided on using TCP based protocol in order to perform a Over the air programming (OTP) system for the device.
 
- Once this system was implemented I felt that I should be able to track all the devices in the field and be able to see which devices are which version of the firmware. This meant I had to build a web application. Back then I choose to make use of PHP and the best options then were [CodeIgnitor](http://www.codeigniter.com/) and [CakePHP](http://cakephp.org/). I went ahead with [CakePHP](http://cakephp.org/) and built a website, the source code can be found [here](https://bitbucket.org/nikhilkalige/motor-website).
+ Once this system was implemented I felt that I should be able to track all the devices in the field and be able to see which devices are which version of the firmware. This meant I had to build a web application. Back then I choose to make use of PHP and the best options then were [CodeIgnitor](http://www.codeigniter.com/) and [CakePHP](http://cakephp.org/). I went ahead with [CakePHP](http://cakephp.org/) and built a website.
 
 ###2. Main Application
 I choose to write the application code from scratch rather then going ahead using [arduino](http://www.arduino.cc/) core. I have always felt that I have more control over the system when bare bones C code is used. During the whole process of building the code, I went through in two iterations. For the first time, I wrote without using any frameworks, but when I finished the first round of coding, I came across a UML based framework called [Quantum Leaps](http://www.state-machine.com/) for writing event driven code using UML based diagrams.
@@ -73,6 +73,12 @@ After much brainstorming with my brother we decided on branding it as ***"AGRI I
 
 ##Conclusion
 This project was a very good experience for me. It gave me a perspective as to what goes into developing, producing and marketing a hardware based product. I got to understand the various facets of this process having gone through each of these be myself. The project has a lot of room for improvements. I would like to add more memory for the controller and better isolation between the mains if I decide on making one more revision. So this ends the long rant, thank you for your patience.
+
+##Source Code
+
+* [TCP Boot loader](https://github.com/NikhilKalige/arduino_gsm_tcp_bootloader)
+* [Motor Website](https://bitbucket.org/nikhilkalige/motor-website)
+* [Firmware based on Quantum Leaps](https://github.com/NikhilKalige/sms-controller-qp)
 
    [1]: {filename}/images/sms_controller/final1.jpg
    [2]: http://micrel.com/index.php/products/power-management-ics/ldos/single-ldos/article/134.html
