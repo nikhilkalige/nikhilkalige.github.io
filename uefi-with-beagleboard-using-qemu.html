@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>UEFI with BeagleBoard on Ubuntu using Qemu | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Develop an UEFI osloader that is capable of loading a FreeRTOS application on Beagleboard using Qemu">
+    <meta name="keywords" content="UEFI,Beagleboard,FreeRTOS,Qemu">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="wrapper">
+        <header>
+            <a class="title" href="/" itemprop="url">
+                <span>Short</span><span>Circuits</span>
+                <img class= "logo2" alt="site-logo" src="/static/images/logo.png">
+            </a>
+            <nav itemprop="breadcrumb">
+                <a href="/projects">Projects</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </nav>
+            <div class="clearfix"></div>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
+        <a href="/uefi-with-beagleboard-using-qemu.html" rel="bookmark"
+           title="Permalink to UEFI with BeagleBoard on Ubuntu using Qemu"><span class="caps">UEFI</span> with BeagleBoard on Ubuntu using&nbsp;Qemu</a>
+    </h1>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span>
+                    <time itemprop="dateCreated" datetime="2015-05-10">
+                        May 10, 2015
+                    </time>
+                </span>
+            </div>
+    <ul class="article-tag">
+        <li itemprop="keywords"><a href="/tag/uefi.html">UEFI</a></li>
+        <li itemprop="keywords"><a href="/tag/beagleboard.html">Beagleboard</a></li>
+        <li itemprop="keywords"><a href="/tag/freertos.html">FreeRTOS</a></li>
+        <li itemprop="keywords"><a href="/tag/qemu.html">Qemu</a></li>
+    </ul>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p><a href="http://www.uefi.org/" title="UEFI">Unified Extensible Firmware Interface(<span class="caps">UEFI</span>)</a> is the new standard that is being developed in order to replace <span class="caps">BIOS</span>. <span class="caps">UEFI</span> was first developed by Intel and was later joined by other organizations.  All the open source components of Intel&#8217;s implementation of <span class="caps">UEFI</span> is currently hosted at <a href="http://www.tianocore.org/" title="Tianocore">tianocore</a> website. <a href="http://www.tianocore.org/edk2/" title="EDK2"><span class="caps">EDK</span> <span class="caps">II</span></a>  is a modern, feature-rich, cross-platform firmware development environment for the <span class="caps">UEFI</span> and <span class="caps">PI</span>&nbsp;specifications.</p>
+<p>In this article, we will be going over how to setup edk2 for beagleboard on Ubuntu 14.04. I will be using qemu in order to simulate beagleboard. Finally we will develop an osloader that can load a <a href="www.freertos.org" title="FreeRTOS">FreeRTOS</a>&nbsp;application.</p>
+<h3>Creating SdCard&nbsp;Image</h3>
+<p>In order to boot beagleboard, we need the sdcard image with u-boot in it. We will be using <strong>linaro image creator</strong> to create the image file. Linaro group maintains a ppa from which we can install these&nbsp;tools.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> sudo add-apt-repository ppa:linaro-maintainers/tools
+<span class="gp">user@bash:$</span> sudo apt-get update
+<span class="gp">user@bash:$</span> sudo apt-get install linaro-image-tools
+</pre></div>
+
+
+<p>We also need a few additional files to create the&nbsp;image.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> wget http://releases.linaro.org/platform/linaro-m/hwpacks/final/hwpack_linaro-omap3_20101109-1_armel_supported.tar.gz
+<span class="gp">user@bash:$</span> wget http://releases.linaro.org/platform/linaro-m/headless/release-candidate/linaro-m-headless-tar-20101101-0.tar.gz
+</pre></div>
+
+
+<p>Now we can create the sdcard image file with the following&nbsp;commands</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> sudo linaro-media-create --image_file beagle_sd.img --dev beagle --binary linaro-m-headless-tar-20101101-0.tar.gz --hwpack hwpack_linaro-omap3_20101109-1_armel_supported.tar.gz
+</pre></div>
+
+
+<p>This will create a <code>beagle_sd.img</code> image file in your current&nbsp;directory.</p>
+<h3>Mounting SdCard&nbsp;Image</h3>
+<p>I spent some time trying to figure out how to mount the sdcard to access the files. I have listed the commands used to mount the&nbsp;sdcard.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> fdisk -l beagle_sd.img
+<span class="go">        Device Boot      Start         End      Blocks   Id  System</span>
+<span class="go">beagle_sd.img1   *          63      106494       53216    c  W95 FAT32 (LBA)</span>
+<span class="go">beagle_sd.img2          106496     6291455     3092480   83  Linux</span>
+<span class="gp">user@bash:$</span> mkdir /tmp/beagle
+<span class="gp">user@bash:$</span> sudo mount -o loop,offset<span class="o">=</span><span class="nv">$[</span>63*512<span class="o">]</span> beagle_sd.img /tmp/beagle
+</pre></div>
+
+
+<p>You will notice that the value I used in <code>$[63*512]</code> is the same value I get from <code>fdisk</code> command under <code>Start</code>. So you should replace 63 by the value you&nbsp;get.</p>
+<p>The mounted sd card has the following&nbsp;files</p>
+<div class="highlight"><pre><span class="go">boot.ini  boot.scr  boot.txt  MLO  u-boot.bin  uImage  uInitrd</span>
+</pre></div>
+
+
+<h3>Install&nbsp;Qemu</h3>
+<p>Installing Qemu in Ubuntu is very easy as it exists in the system repository. But the main qemu branch does not support beagleboard. Linaro has forked qemu and they have added support for beagle board in their release. I was unable to find a ppa for that release. We need to install it from the <a href="git://git.linaro.org/qemu/qemu-linaro.git" title="linaro qemu">source</a>, but if you install the latest release which is currently at <code>0677e6e</code>, you will be able to boot the system but you will be unable to browse the contents of the sdcard which is essential if you need to run an <span class="caps">UEFI</span>&nbsp;application.</p>
+<p>I found that a older version of the code works and you can download the zip file from <a href="https://launchpad.net/~linaro-maintainers/+archive/ubuntu/tools/+files/qemu-linaro_1.5.0-2013.06+git74+20130802+ef1b0ae.orig.tar.bz2" title="linaro-qemu zip">here</a>. Extract the file and then use the below commands to install qemu. If you directly use the below commands, the build will fail with an error related to <code>fdt32_t</code>. So you have to patch <code>include/libfdt_env.h</code> file by adding the below lines after line&nbsp;22.</p>
+<div class="highlight"><pre><span class="cp">#ifdef __CHECKER__</span>
+    <span class="cp">#define __force __attribute__((force))</span>
+    <span class="cp">#define __bitwise __attribute__((bitwise))</span>
+<span class="cp">#else</span>
+    <span class="cp">#define __force</span>
+    <span class="cp">#define __bitwise</span>
+<span class="cp">#endif</span>
+
+<span class="k">typedef</span> <span class="kt">uint16_t</span> <span class="n">__bitwise</span> <span class="kt">fdt16_t</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">uint32_t</span> <span class="n">__bitwise</span> <span class="kt">fdt32_t</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">uint64_t</span> <span class="n">__bitwise</span> <span class="kt">fdt64_t</span><span class="p">;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="gp">user@bash:$</span> sudo apt-get build-dep qemu
+<span class="gp">user@bash:$</span> ./configure --target-list<span class="o">=</span>arm-softmmu --prefix<span class="o">=</span><span class="nv">$HOME</span>/qemu
+<span class="gp">user@bash:$</span> make 
+<span class="gp">user@bash:$</span> make install
+</pre></div>
+
+
+<p>The above commands will install qemu into <code>qemu</code> folder in your home directory. Now add the directory to you path by editing your <code>.bashrc</code> file.</p>
+<div class="highlight"><pre><span class="go">PATH=$PATH:~/qemu/bin</span>
+</pre></div>
+
+
+<p>Now <code>qemu-system-arm</code> command should be available at&nbsp;prompt.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> qemu-system-arm --version
+<span class="go">QEMU emulator version 1.5.0 (qemu-linaro from git), Copyright (c) 2003-2008 Fabrice Bellard</span>
+</pre></div>
+
+
+<h3>Testing&nbsp;Qemu</h3>
+<p>At this point, we can test whether qemu is working with the sd card image we generated. When you run the below command you should get the u-boot&nbsp;prompt.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
+<span class="go">Texas Instruments X-Loader 1.4.4ss (Sep 30 2010 - 14:44:32)</span>
+<span class="go">Beagle Rev C4</span>
+<span class="go">Reading boot sector</span>
+<span class="go">Loading u-boot.bin from mmc</span>
+</pre></div>
+
+
+<h3>Building <span class="caps">UEFI</span></h3>
+<p>In order to build <span class="caps">UEFI</span>, we need the Arm toolchain. Follow the simple instructions below and you should be able to generate the  file without any&nbsp;trouble.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> sudo apt-get install gcc-arm-linux-gnueabi
+<span class="gp">user@bash:$</span> gcc-arm-linux-gnueabi --version
+<span class="go">arm-linux-gnueabi-gcc (Ubuntu/Linaro 4.7.3-12ubuntu1) 4.7.3</span>
+<span class="gp">user@bash:$</span> git clone https://github.com/tianocore/edk2.git
+<span class="gp">user@bash:$</span> <span class="nb">cd </span>edk2
+<span class="gp">user@bash:$</span> <span class="nb">source </span>edksetup.sh
+<span class="gp">user@bash:$</span> <span class="nb">cd </span>BeagleBoardPkg
+<span class="gp">user@bash:$</span> ./build.sh
+<span class="gp">user@bash:$</span> ls ../Build/BeagleBoard/DEBUG_ARMLINUXGCC/FV/
+</pre></div>
+
+
+<p>Now you should be able to see <code>BEAGLEBOARD_EFI.FD</code> which is the file we will be using to boot <span class="caps">UEFI</span>. </p>
+<p>Mount the sdcard using the commands that were given in the beginning. Now we need to replace the <code>u-boot.bin</code> file with the <code>BEAGLEBOARD_EFI.fd</code> file in the sdcard. Lets now start <span class="caps">UEFI</span> on the beagle&nbsp;board.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix 
+</pre></div>
+
+
+<p>This will start the qemu and after that it prints some gibberish and then you should get the boot selection option of <span class="caps">UEFI</span>.</p>
+<div class="highlight"><pre>The default boot selection will start in   5 seconds
+[1] Linux from SD
+......
+[2] Shell
+[3] Boot Manager
+Start: 
+</pre></div>
+
+
+<p>If you get some lines  saying <code>SD: CMD12 in a wrong state</code> just ignore them. We need to enter the shell, so enter <code>2</code> to select the shell. This will output the Mapping table and the important thing to note here is that you should have a <code>FS0:</code> entry. If you did not get that then you are doing something&nbsp;wrong. </p>
+<p>I had some problem with the number of lines that the shell could print, so you can use <code>mode 100 31</code> to fix this. You can use  <code>cls</code>  to clear the&nbsp;screen. </p>
+<h3>Building FreeRTOS and&nbsp;OSLoader</h3>
+<p>FreeRTOS is a simple real time operating system suited for small and medium sized micro-controllers. I was not the one who ported FreeRTOS on to beagleboard, here I will be only going over the changes I had to make in order for it work with <span class="caps">UEFI</span>. </p>
+<p><span class="caps">UEFI</span> defines a simple set of instructions to build a&nbsp;osloader. </p>
+<ul>
+<li>Load the application in to the&nbsp;memory.</li>
+<li>Call <code>GetMemoryMap()</code> to get the memory map and the&nbsp;key</li>
+<li>Call <code>ExitBootServices()</code> to stop the boot time services provided by <span class="caps">UEFI</span>.</li>
+<li>Now transfer control to the&nbsp;application</li>
+</ul>
+<p>So it is as simple as&nbsp;that.</p>
+<p>We need to install <a href="http://www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/" title="Mentor Graphics Codebench">CodeSourcery toolchain</a> to be able to compile the FreeRTOS code. I downloaded the lite version and installed it and added it to my path. If you did this right at the end you should be able to run the below&nbsp;command.</p>
+<div class="highlight"><pre><span class="gp">user@bash:$</span> arm-none-eabi-gcc --version
+<span class="go">arm-none-eabi-gcc (Sourcery CodeBench 2014.11-36) 4.9.1</span>
+<span class="go">Copyright (C) 2014 Free Software Foundation, Inc.</span>
+</pre></div>
+
+
+<p>I have put up the source code for this project on <a href="https://github.com/NikhilKalige/uefi_freertos_beagleboard" title="UEFI Beagleboard">github</a>. I also have added the instructions needed to compile the FreeRTOS and <span class="caps">UEFI</span> application in the&nbsp;readme. </p>
+<h3>Loading Application in to&nbsp;memory</h3>
+<p>Compiling FreeRTOS will generate an <code>elf</code> file and we need to load this file in to the memory. Elf file has a very simple file format and <code>readelf</code> is command that is very handy. Elf has a main header that holds the gist of the overall file and it also holds the pointers to other sections. Elf has different kinds of sections but we are interested only in the program section. The osloader just loops over all the program headers and loads the content starting at the virtual address. The virtual address value can obtained from <code>p_vaddr</code> variable in the elf header. The header also has one more important parameter and that is the entry point (<code>e_entry</code>). This points to the location from which the code should start&nbsp;executing. </p>
+<p><span class="caps">UEFI</span> has two kinds of services boot time and run time services. The <span class="caps">OS</span> cannot use the boot time services but it can make use of the run time services that are provided. So we need to provide a pointer to the&nbsp;structure.</p>
+<div class="highlight"><pre><span class="cm">/** Function pointer to FreeRTOS main  */</span>
+<span class="k">typedef</span> <span class="nf">VOID</span> <span class="p">(</span><span class="o">*</span><span class="n">freertos_elf</span><span class="p">)(</span><span class="n">EFI_RUNTIME_SERVICES</span><span class="o">*</span> <span class="n">runtime</span><span class="p">);</span>
+
+<span class="cm">/** Inside main */</span>
+<span class="cm">/** declare function ptr */</span>
+<span class="n">freertos_elf</span> <span class="n">start_elf</span><span class="p">;</span>
+<span class="p">....</span> 
+<span class="cm">/** Jump to the entry point */</span>
+<span class="n">start_elf</span> <span class="o">=</span> <span class="p">(</span><span class="n">freertos_elf</span><span class="p">)</span><span class="n">EntryPoint</span><span class="p">;</span>
+<span class="n">start_elf</span><span class="p">(</span><span class="n">gRT</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The above code should be self explanatory. The 1st lines defines a function pointer to the main with a pointer to the <span class="caps">UEFI</span> runtime services as a parameter.  The start address of the FreeRTOS application is held by the <code>Entrypoint</code> variable. Finally you just call the function and this should start the FreeRTOS&nbsp;app.</p>
+<h3>FreeRTOS&nbsp;Modifications</h3>
+<p>I had to make a few modifications to the FreeRTOS application for it to&nbsp;work. </p>
+<p>You need to include <code>UEFI.h</code> and modify the main function declaration so that it can accept the <span class="caps">UEFI</span> runtime services&nbsp;pointer. </p>
+<div class="highlight"><pre><span class="cp">#include &lt;Uefi.h&gt;</span>
+<span class="n">EFI_RUNTIME_SERVICES</span>  <span class="o">*</span><span class="n">uefi_services</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">pointer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">uefi_services</span> <span class="o">=</span> <span class="p">(</span><span class="n">EFI_RUNTIME_SERVICES</span><span class="o">*</span><span class="p">)</span><span class="n">pointer</span><span class="p">;</span>
+</pre></div>
+
+
+<p><span class="caps">ARM</span> has two modes of operation <strong><span class="caps">ARM</span></strong> and <strong>Thumb</strong> mode. When you jump from <span class="caps">UEFI</span> it seems to be in thumb mode whereas our application was compiled in arm mode. So we basically check and  then make a switch to arm mode if needed. The pointer value also needs to stored as we will be using the registers for other&nbsp;operations.</p>
+<div class="highlight"><pre><span class="cm">/** Application code starts here */</span><span class="w"></span>
+<span class="nl">start</span><span class="o">:</span><span class="w"></span>
+<span class="nl">_start</span><span class="o">:</span>r<span class="w"> </span>
+<span class="nl">_mainCRTStartup</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span>thumb<span class="w"></span>
+<span class="nl">thumb_entry_point</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>blx<span class="w"> </span>arm_entry_point<span class="w"></span>
+<span class="w">    </span><span class="o">.</span>arm<span class="w"></span>
+<span class="nl">arm_entry_point</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* store runtime pointer in r10 */</span><span class="w"></span>
+<span class="w">    </span>mov<span class="w"> </span>r10<span class="o">,</span><span class="w"> </span>r0<span class="w"> </span>
+<span class="w">    </span><span class="o">....</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* Load the pointer back to r0 */</span><span class="w"></span>
+<span class="w">    </span>mov<span class="w"> </span>r0<span class="o">,</span><span class="w"> </span>r10<span class="w"></span>
+<span class="w">    </span>mov<span class="w"> </span>r1<span class="o">,</span><span class="w"> </span><span class="err">#</span><span class="m">0</span><span class="w">          </span><span class="cm">/* no argv either */</span><span class="w"></span>
+<span class="w">    </span>bl<span class="w">  </span>main<span class="w"></span>
+</pre></div>
+
+
+<p>The exception vector table that is responsible for handling interrupts in <span class="caps">ARM</span> can be moved around. <span class="caps">UEFI</span> uses a different location and in order for our interrupts to work we need to relocate the vector table&nbsp;address.</p>
+<div class="highlight"><pre>ldr   r0, =0x40014000
+mcr   p15, 0, r0, c12, c0, 0
+mrc   p15, 0, r1, c12, c0, 0
+</pre></div>
+
+
+<h3>Debugging <span class="caps">UEFI</span></h3>
+<p>We will be using <code>arm-none-eabi-gdb</code> to debug <span class="caps">UEFI</span> code on qemu. Gdb needs <span class="caps">UEFI</span> core application symbols and also you need add those of the application you developed. When you start qemu you will get a log at the beginning that looks like&nbsp;this.</p>
+<div class="highlight"><pre>add-symbol-file path-to-edk2/Build/BeagleBoard/DEBUG_ARMLINUXGCC/ARM/Omap35xxPkg/MmcHostDxe/MmcHostDxe/DEBUG/MMC.dll 0x87AD0240 
+</pre></div>
+
+
+<p>You should see a number of lines that show the path and address for different <code>dll</code> files. You can either copy all those lines to a file and run the below command to load it or else you can just copy and paste it at the gdb&nbsp;prompt.</p>
+<div class="highlight"><pre>(gdb) source filename
+</pre></div>
+
+
+<p>Finally you need to add the symbol for your <span class="caps">UEFI</span>  and freertos application. You can load the freertos symbols&nbsp;using</p>
+<div class="highlight"><pre>(gdb) add-symbol-file path-to-file/rtosdemo.elf 0x80300000
+</pre></div>
+
+
+<p>Copy  <code>rtosdemo.elf</code> and  <code>osloader.efi</code> file to the sdcard and then start qemu but now add <code>-s</code> to enable debugging using gdb. Connect gdb to qemu with the below&nbsp;command</p>
+<div class="highlight"><pre>(gdb) target remote :1234
+</pre></div>
+
+
+<p>You should get the <span class="caps">UEFI</span> shell prompt as was shown above. Now we just need to run the&nbsp;osloader.</p>
+<div class="highlight"><pre>Shell&gt; fs0:
+FS0:\&gt; osloader.efi
+add-symbol-file path-to-file/osloader.dll 0x86E04240
+</pre></div>
+
+
+<p>Copy the above line and paste it in to gdb and you should be able set the breakpoints and step in and out of the&nbsp;code.</p>
+<h3>Conclusion</h3>
+<p>I wrote this long post hoping that it will help anybody the trouble I went though to get to this point. When I started, I had problems getting qemu to work, after that point I did not have any idea about how to get gdb to debug my code. Finally I had problems with <span class="caps">ARM</span> FreeRTOS application, mainly with regards to the thumb mode and the vector table&nbsp;address. </p>
+<p>Please send me a mail if you need any additional info or if you find any&nbsp;mistakes.</p>
+<h3>References and&nbsp;Links</h3>
+<ol>
+<li><a href="https://github.com/tianocore/edk2" title="Tianocore">Tianocore</a></li>
+<li><a href="http://wiki.minix3.org/doku.php?id=developersguide:minixonlinaroqemuarm" title="Build Linaro">Building Linaro&nbsp;Qemu</a></li>
+<li><a href="http://tianocore.sourceforge.net/wiki/BeagleBoardPkg" title="beagleboard tianocore">Tianocore&nbsp;Beagleboard</a></li>
+<li><a href="https://github.com/fgken/uefi-bootloader" title="UEFI Bootloader"><span class="caps">UEFI</span>&nbsp;Bootloader</a></li>
+<li><a href="https://github.com/NikhilKalige/uefi_freertos_beagleboard" title="UEFI freertos beagleboard">Source&nbsp;Code</a></li>
+</ol>
+    </div>
+</article>
+
+        </section>
+        <div class="push"></div>
+    </div>
+
+    <footer>
+        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
+    </footer>
+</body>
+</html>

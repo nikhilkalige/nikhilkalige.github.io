@@ -1,0 +1,252 @@
+// All styles manifest
+// ===================
+
+// Dependencies.
+@import 'normalize'
+@import 'prism'
+@import 'breakpoint'
+
+// Fix box sizing.
+*,
+*:after,
+*:before
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
+// The great margin/padding/border/outline reset.
+*
+  margin: 0
+  padding: 0
+  border: 0
+  outline: none
+
+// Fonts.
+$serif: 'museo-slab', serif
+
+// Colours.
+$dark: black
+$clear: #e7e7e7
+$orange: #f26148
+
+// Grid.
+$spacing: 1rem
+
+// Extends and special classes
+.amp
+  font-family: Palatino, "Book Antiqua", serif
+  font-style: italic
+
+.separator
+  display: block
+  margin: $spacing 0 0
+  font-size: .8rem
+  text-align: center
+  color: $clear
+  pointer-events: none
+
+// Links.
+a
+  color: $orange
+  font-weight: 700
+  opacity: .5
+  pointer-events: none
+
+  &[href]
+    opacity: 1
+    pointer-events: auto
+
+body
+  +breakpoint(small)
+    padding: $spacing
+  -webkit-animation: fade-in .3s linear forwards
+  -moz-animation: fade-in .3s linear forwards
+  animation: fade-in .3s linear forwards
+  max-width: 1000px
+  margin: 0 auto
+  font-family: $serif
+  opacity: 0
+  overflow-x: hidden
+
+.home-header
+  +breakpoint(small)
+    margin: 50px 0 0
+  margin: 150px auto 0
+  text-align: center
+
+.home-footer
+  margin: $spacing*4 auto 150px
+  text-align: center
+  font-size: .8rem
+
+  p
+    margin-top: $spacing
+
+
+.title
+  +breakpoint(small)
+    font-size: 1.9rem
+  margin: $spacing*2 0 0
+  font-size: 2.6rem
+
+.subtitle
+  +breakpoint(small)
+    font-size: .8rem
+  display: inline-block
+  position: relative
+  margin: $spacing 0 0
+  font-size: 1.1rem
+
+  &:before,
+  &:after
+    +breakpoint(small)
+      display: none
+    position: absolute
+    top: 50%
+    height: 2px
+    width: $spacing*3
+    content: ' '
+    background: $clear
+
+  &:before
+    left: -$spacing*4
+
+  &:after
+    right: -$spacing*4
+
+.chapter-index
+  margin: 3rem auto 0
+  list-style: none
+
+  li
+    font-size: 1.1rem
+    margin-top: $spacing
+    text-align: center
+
+.chapter
+  max-width: 740px
+  margin-bottom: 150px
+
+  h1:first-of-type
+    +breakpoint(small)
+      margin: 50px 0 0
+    margin: 150px auto 0
+    text-align: center
+
+    &:after
+      display: block
+      margin-top: $spacing*2
+      content: '★'
+      font-size: 1.1rem
+  p,
+  li,
+  pre
+    +breakpoint(small)
+      font-size: .8rem
+    margin: $spacing 0 0
+    font-size: 1.1rem
+    line-height: 1.4
+
+  pre
+    font-size: 1rem
+    -webkit-overflow-scrolling: touch
+
+  code
+    +breakpoint(small)
+      font-size: .8rem
+    font-size: .95rem
+
+  .separator+p:first-letter,
+  h1+p:first-letter
+    font-size: 150%
+    font-weight: 700
+    line-height: 1
+
+  h1 + p,
+  h2 + p
+    margin-top: 2rem
+
+  h2
+    margin: 3rem auto 0
+
+.language-javascript
+  pre.language-coffeescript
+    display: none
+
+.language-coffeescript
+  pre.language-javascript
+    display: none
+
+.key
+  display: inline-block
+  padding: .25rem
+  font-family: sans-serif
+  color: $clear
+  background: $dark
+  text-transform: uppercase
+  border-radius: .2rem
+
+.toggler-menu
+  -webkit-perspective: 1000px
+  -moz-perspective: 1000px
+  perspective: 1000px
+  position: fixed
+  top: 0
+  right: $spacing*4
+  font-weight: bold
+  text-transform: uppercase
+
+  .toggler-button
+    -webkit-transform-style: preserve-3d
+    -moz-transform-style: preserve-3d
+    transform-style: preserve-3d
+    -webkit-transition: all .5s linear
+    position: relative
+    width: 2rem
+    height: 2rem
+    cursor: pointer
+
+  span
+    -webkit-backface-visibility: hidden
+    -moz-backface-visibility: hidden
+    backface-visibility: hidden
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    line-height: 2rem
+    background: $dark
+    color: $clear
+    text-align: center
+    font-weight: bold
+    font-family: sans-serif
+    box-shadow: 2px 2px 1px rgba($dark, .15)
+
+  .javascript-label
+    -webkit-transform: rotateY(180deg)
+    -moz-transform: rotateY(180deg)
+    transform: rotateY(180deg)
+
+.language-javascript .toggler-button
+  -webkit-transform: rotateY(180deg)
+  -moz-transform: rotateY(180deg)
+  transform: rotateY(180deg)
+
+// The fade-in animation
+@-webkit-keyframes fade-in
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@-moz-keyframes fade-in
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes fade-in
+  from
+    opacity: 0
+  to
+    opacity: 1
