@@ -47,8 +47,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="meta-info">
             <div class="post-date">
                 <span>
-                    <time itemprop="dateCreated" datetime="2015-06-19">
-                        June 19, 2015
+                    <time itemprop="dateCreated" datetime="2015-05-10">
+                        May 10, 2015
                     </time>
                 </span>
             </div>
@@ -119,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <div class="highlight"><pre><span class="gp">user@bash:$</span> sudo apt-get build-dep qemu
 <span class="gp">user@bash:$</span> ./configure --target-list<span class="o">=</span>arm-softmmu --prefix<span class="o">=</span><span class="nv">$HOME</span>/qemu
-<span class="gp">user@bash:$</span> make 
+<span class="gp">user@bash:$</span> make
 <span class="gp">user@bash:$</span> make install
 </pre></div>
 
@@ -159,9 +159,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 
 
-<p>Now you should be able to see <code>BEAGLEBOARD_EFI.FD</code> which is the file we will be using to boot <span class="caps">UEFI</span>. </p>
+<p>Now you should be able to see <code>BEAGLEBOARD_EFI.FD</code> which is the file we will be using to boot <span class="caps">UEFI</span>.</p>
 <p>Mount the sdcard using the commands that were given in the beginning. Now we need to replace the <code>u-boot.bin</code> file with the <code>BEAGLEBOARD_EFI.fd</code> file in the sdcard. Lets now start <span class="caps">UEFI</span> on the beagle&nbsp;board.</p>
-<div class="highlight"><pre><span class="gp">user@bash:$</span> qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix 
+<div class="highlight"><pre><span class="gp">user@bash:$</span> qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
 </pre></div>
 
 
@@ -171,15 +171,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ......
 [2] Shell
 [3] Boot Manager
-Start: 
+Start:
 </pre></div>
 
 
-<p>If you get some lines  saying <code>SD: CMD12 in a wrong state</code> just ignore them. We need to enter the shell, so enter <code>2</code> to select the shell. This will output the Mapping table and the important thing to note here is that you should have a <code>FS0:</code> entry. If you did not get that then you are doing something&nbsp;wrong. </p>
-<p>I had some problem with the number of lines that the shell could print, so you can use <code>mode 100 31</code> to fix this. You can use  <code>cls</code>  to clear the&nbsp;screen. </p>
+<p>If you get some lines  saying <code>SD: CMD12 in a wrong state</code> just ignore them. We need to enter the shell, so enter <code>2</code> to select the shell. This will output the Mapping table and the important thing to note here is that you should have a <code>FS0:</code> entry. If you did not get that then you are doing something&nbsp;wrong.</p>
+<p>I had some problem with the number of lines that the shell could print, so you can use <code>mode 100 31</code> to fix this. You can use  <code>cls</code>  to clear the&nbsp;screen.</p>
 <h3>Building FreeRTOS and&nbsp;OSLoader</h3>
-<p>FreeRTOS is a simple real time operating system suited for small and medium sized micro-controllers. I was not the one who ported FreeRTOS on to beagleboard, here I will be only going over the changes I had to make in order for it work with <span class="caps">UEFI</span>. </p>
-<p><span class="caps">UEFI</span> defines a simple set of instructions to build a&nbsp;osloader. </p>
+<p>FreeRTOS is a simple real time operating system suited for small and medium sized micro-controllers. I was not the one who ported FreeRTOS on to beagleboard, here I will be only going over the changes I had to make in order for it work with <span class="caps">UEFI</span>.</p>
+<p><span class="caps">UEFI</span> defines a simple set of instructions to build a&nbsp;osloader.</p>
 <ul>
 <li>Load the application in to the&nbsp;memory.</li>
 <li>Call <code>GetMemoryMap()</code> to get the memory map and the&nbsp;key</li>
@@ -194,9 +194,9 @@ Start:
 </pre></div>
 
 
-<p>I have put up the source code for this project on <a href="https://github.com/NikhilKalige/uefi_freertos_beagleboard" title="UEFI Beagleboard">github</a>. I also have added the instructions needed to compile the FreeRTOS and <span class="caps">UEFI</span> application in the&nbsp;readme. </p>
+<p>I have put up the source code for this project on <a href="https://github.com/NikhilKalige/uefi_freertos_beagleboard" title="UEFI Beagleboard">github</a>. I also have added the instructions needed to compile the FreeRTOS and <span class="caps">UEFI</span> application in the&nbsp;readme.</p>
 <h3>Loading Application in to&nbsp;memory</h3>
-<p>Compiling FreeRTOS will generate an <code>elf</code> file and we need to load this file in to the memory. Elf file has a very simple file format and <code>readelf</code> is command that is very handy. Elf has a main header that holds the gist of the overall file and it also holds the pointers to other sections. Elf has different kinds of sections but we are interested only in the program section. The osloader just loops over all the program headers and loads the content starting at the virtual address. The virtual address value can obtained from <code>p_vaddr</code> variable in the elf header. The header also has one more important parameter and that is the entry point (<code>e_entry</code>). This points to the location from which the code should start&nbsp;executing. </p>
+<p>Compiling FreeRTOS will generate an <code>elf</code> file and we need to load this file in to the memory. Elf file has a very simple file format and <code>readelf</code> is command that is very handy. Elf has a main header that holds the gist of the overall file and it also holds the pointers to other sections. Elf has different kinds of sections but we are interested only in the program section. The osloader just loops over all the program headers and loads the content starting at the virtual address. The virtual address value can obtained from <code>p_vaddr</code> variable in the elf header. The header also has one more important parameter and that is the entry point (<code>e_entry</code>). This points to the location from which the code should start&nbsp;executing.</p>
 <p><span class="caps">UEFI</span> has two kinds of services boot time and run time services. The <span class="caps">OS</span> cannot use the boot time services but it can make use of the run time services that are provided. So we need to provide a pointer to the&nbsp;structure.</p>
 <div class="highlight"><pre><span class="cm">/** Function pointer to FreeRTOS main  */</span>
 <span class="k">typedef</span> <span class="nf">VOID</span> <span class="p">(</span><span class="o">*</span><span class="n">freertos_elf</span><span class="p">)(</span><span class="n">EFI_RUNTIME_SERVICES</span><span class="o">*</span> <span class="n">runtime</span><span class="p">);</span>
@@ -204,7 +204,7 @@ Start:
 <span class="cm">/** Inside main */</span>
 <span class="cm">/** declare function ptr */</span>
 <span class="n">freertos_elf</span> <span class="n">start_elf</span><span class="p">;</span>
-<span class="p">....</span> 
+<span class="p">....</span>
 <span class="cm">/** Jump to the entry point */</span>
 <span class="n">start_elf</span> <span class="o">=</span> <span class="p">(</span><span class="n">freertos_elf</span><span class="p">)</span><span class="n">EntryPoint</span><span class="p">;</span>
 <span class="n">start_elf</span><span class="p">(</span><span class="n">gRT</span><span class="p">);</span>
@@ -213,8 +213,8 @@ Start:
 
 <p>The above code should be self explanatory. The 1st lines defines a function pointer to the main with a pointer to the <span class="caps">UEFI</span> runtime services as a parameter.  The start address of the FreeRTOS application is held by the <code>Entrypoint</code> variable. Finally you just call the function and this should start the FreeRTOS&nbsp;app.</p>
 <h3>FreeRTOS&nbsp;Modifications</h3>
-<p>I had to make a few modifications to the FreeRTOS application for it to&nbsp;work. </p>
-<p>You need to include <code>UEFI.h</code> and modify the main function declaration so that it can accept the <span class="caps">UEFI</span> runtime services&nbsp;pointer. </p>
+<p>I had to make a few modifications to the FreeRTOS application for it to&nbsp;work.</p>
+<p>You need to include <code>UEFI.h</code> and modify the main function declaration so that it can accept the <span class="caps">UEFI</span> runtime services&nbsp;pointer.</p>
 <div class="highlight"><pre><span class="cp">#include &lt;Uefi.h&gt;</span>
 <span class="n">EFI_RUNTIME_SERVICES</span>  <span class="o">*</span><span class="n">uefi_services</span><span class="p">;</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">pointer</span><span class="p">)</span> <span class="p">{</span>
@@ -225,7 +225,7 @@ Start:
 <p><span class="caps">ARM</span> has two modes of operation <strong><span class="caps">ARM</span></strong> and <strong>Thumb</strong> mode. When you jump from <span class="caps">UEFI</span> it seems to be in thumb mode whereas our application was compiled in arm mode. So we basically check and  then make a switch to arm mode if needed. The pointer value also needs to stored as we will be using the registers for other&nbsp;operations.</p>
 <div class="highlight"><pre><span class="cm">/** Application code starts here */</span><span class="w"></span>
 <span class="nl">start</span><span class="o">:</span><span class="w"></span>
-<span class="nl">_start</span><span class="o">:</span>r<span class="w"> </span>
+<span class="nl">_start</span><span class="o">:</span>r<span class="w"></span>
 <span class="nl">_mainCRTStartup</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="o">.</span>thumb<span class="w"></span>
 <span class="nl">thumb_entry_point</span><span class="o">:</span><span class="w"></span>
@@ -233,7 +233,7 @@ Start:
 <span class="w">    </span><span class="o">.</span>arm<span class="w"></span>
 <span class="nl">arm_entry_point</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="cm">/* store runtime pointer in r10 */</span><span class="w"></span>
-<span class="w">    </span>mov<span class="w"> </span>r10<span class="o">,</span><span class="w"> </span>r0<span class="w"> </span>
+<span class="w">    </span>mov<span class="w"> </span>r10<span class="o">,</span><span class="w"> </span>r0<span class="w"></span>
 <span class="w">    </span><span class="o">....</span><span class="w"></span>
 <span class="w">    </span><span class="cm">/* Load the pointer back to r0 */</span><span class="w"></span>
 <span class="w">    </span>mov<span class="w"> </span>r0<span class="o">,</span><span class="w"> </span>r10<span class="w"></span>
@@ -251,7 +251,7 @@ mrc   p15, 0, r1, c12, c0, 0
 
 <h3>Debugging <span class="caps">UEFI</span></h3>
 <p>We will be using <code>arm-none-eabi-gdb</code> to debug <span class="caps">UEFI</span> code on qemu. Gdb needs <span class="caps">UEFI</span> core application symbols and also you need add those of the application you developed. When you start qemu you will get a log at the beginning that looks like&nbsp;this.</p>
-<div class="highlight"><pre>add-symbol-file path-to-edk2/Build/BeagleBoard/DEBUG_ARMLINUXGCC/ARM/Omap35xxPkg/MmcHostDxe/MmcHostDxe/DEBUG/MMC.dll 0x87AD0240 
+<div class="highlight"><pre>add-symbol-file path-to-edk2/Build/BeagleBoard/DEBUG_ARMLINUXGCC/ARM/Omap35xxPkg/MmcHostDxe/MmcHostDxe/DEBUG/MMC.dll 0x87AD0240
 </pre></div>
 
 
@@ -279,7 +279,7 @@ add-symbol-file path-to-file/osloader.dll 0x86E04240
 
 <p>Copy the above line and paste it in to gdb and you should be able set the breakpoints and step in and out of the&nbsp;code.</p>
 <h3>Conclusion</h3>
-<p>I wrote this long post hoping that it will help anybody the trouble I went though to get to this point. When I started, I had problems getting qemu to work, after that point I did not have any idea about how to get gdb to debug my code. Finally I had problems with <span class="caps">ARM</span> FreeRTOS application, mainly with regards to the thumb mode and the vector table&nbsp;address. </p>
+<p>I wrote this long post hoping that it will help anybody the trouble I went though to get to this point. When I started, I had problems getting qemu to work, after that point I did not have any idea about how to get gdb to debug my code. Finally I had problems with <span class="caps">ARM</span> FreeRTOS application, mainly with regards to the thumb mode and the vector table&nbsp;address.</p>
 <p>Please send me a mail if you need any additional info or if you find any&nbsp;mistakes.</p>
 <h3>References and&nbsp;Links</h3>
 <ol>
