@@ -1,6 +1,7 @@
 Title: Flask-Cache dynamic timeout
 Category: Python
 Tags: Python, Flask, Flask-cache
+Date: 2015-02-13
 Slug: flask-cache-dynamic-timeout
 Summary: Setting dynamic timeouts for cached flask view functions
 

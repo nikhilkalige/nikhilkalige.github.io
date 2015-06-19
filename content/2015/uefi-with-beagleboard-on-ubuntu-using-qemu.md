@@ -1,5 +1,6 @@
 Title: UEFI with BeagleBoard on Ubuntu using Qemu
 Category: UEFI
+Date: 2015-05-10
 Tags: UEFI, Beagleboard, FreeRTOS, Qemu
 Slug: uefi-with-beagleboard-using-qemu
 Summary: Develop an UEFI osloader that is capable of loading a FreeRTOS application on Beagleboard using Qemu
@@ -67,7 +68,7 @@ typedef uint64_t __bitwise fdt64_t;
 ``` shell-session
 user@bash:$ sudo apt-get build-dep qemu
 user@bash:$ ./configure --target-list=arm-softmmu --prefix=$HOME/qemu
-user@bash:$ make 
+user@bash:$ make
 user@bash:$ make install
 ```
 The above commands will install qemu into `qemu` folder in your home directory. Now add the directory to you path by editing your `.bashrc` file.
@@ -82,7 +83,7 @@ QEMU emulator version 1.5.0 (qemu-linaro from git), Copyright (c) 2003-2008 Fabr
 
 ### Testing Qemu
 At this point, we can test whether qemu is working with the sd card image we generated. When you run the below command you should get the u-boot prompt.
-``` shell-session 
+``` shell-session
 user@bash:$ qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
 Texas Instruments X-Loader 1.4.4ss (Sep 30 2010 - 14:44:32)
 Beagle Rev C4
@@ -103,13 +104,13 @@ user@bash:$ cd BeagleBoardPkg
 user@bash:$ ./build.sh
 user@bash:$ ls ../Build/BeagleBoard/DEBUG_ARMLINUXGCC/FV/
 ```
- 
-Now you should be able to see `BEAGLEBOARD_EFI.FD` which is the file we will be using to boot UEFI. 
+
+Now you should be able to see `BEAGLEBOARD_EFI.FD` which is the file we will be using to boot UEFI.
 
 Mount the sdcard using the commands that were given in the beginning. Now we need to replace the `u-boot.bin` file with the `BEAGLEBOARD_EFI.fd` file in the sdcard. Lets now start UEFI on the beagle board.
 
 ```shell-session
-user@bash:$ qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix 
+user@bash:$ qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
 ```
 This will start the qemu and after that it prints some gibberish and then you should get the boot selection option of UEFI.
 ```
@@ -118,16 +119,16 @@ The default boot selection will start in   5 seconds
 ......
 [2] Shell
 [3] Boot Manager
-Start: 
+Start:
 ```
-If you get some lines  saying `SD: CMD12 in a wrong state` just ignore them. We need to enter the shell, so enter `2` to select the shell. This will output the Mapping table and the important thing to note here is that you should have a `FS0:` entry. If you did not get that then you are doing something wrong. 
+If you get some lines  saying `SD: CMD12 in a wrong state` just ignore them. We need to enter the shell, so enter `2` to select the shell. This will output the Mapping table and the important thing to note here is that you should have a `FS0:` entry. If you did not get that then you are doing something wrong.
 
-I had some problem with the number of lines that the shell could print, so you can use `mode 100 31` to fix this. You can use  `cls`  to clear the screen. 
+I had some problem with the number of lines that the shell could print, so you can use `mode 100 31` to fix this. You can use  `cls`  to clear the screen.
 
 ### Building FreeRTOS and OSLoader
-FreeRTOS is a simple real time operating system suited for small and medium sized micro-controllers. I was not the one who ported FreeRTOS on to beagleboard, here I will be only going over the changes I had to make in order for it work with UEFI. 
+FreeRTOS is a simple real time operating system suited for small and medium sized micro-controllers. I was not the one who ported FreeRTOS on to beagleboard, here I will be only going over the changes I had to make in order for it work with UEFI.
 
-UEFI defines a simple set of instructions to build a osloader. 
+UEFI defines a simple set of instructions to build a osloader.
 
 - Load the application in to the memory.
 - Call `GetMemoryMap()` to get the memory map and the key
@@ -143,10 +144,10 @@ arm-none-eabi-gcc (Sourcery CodeBench 2014.11-36) 4.9.1
 Copyright (C) 2014 Free Software Foundation, Inc.
 ```
 
-I have put up the source code for this project on [github](https://github.com/NikhilKalige/uefi_freertos_beagleboard "UEFI Beagleboard"). I also have added the instructions needed to compile the FreeRTOS and UEFI application in the readme. 
+I have put up the source code for this project on [github](https://github.com/NikhilKalige/uefi_freertos_beagleboard "UEFI Beagleboard"). I also have added the instructions needed to compile the FreeRTOS and UEFI application in the readme.
 
 ### Loading Application in to memory
-Compiling FreeRTOS will generate an `elf` file and we need to load this file in to the memory. Elf file has a very simple file format and `readelf` is command that is very handy. Elf has a main header that holds the gist of the overall file and it also holds the pointers to other sections. Elf has different kinds of sections but we are interested only in the program section. The osloader just loops over all the program headers and loads the content starting at the virtual address. The virtual address value can obtained from `p_vaddr` variable in the elf header. The header also has one more important parameter and that is the entry point (`e_entry`). This points to the location from which the code should start executing. 
+Compiling FreeRTOS will generate an `elf` file and we need to load this file in to the memory. Elf file has a very simple file format and `readelf` is command that is very handy. Elf has a main header that holds the gist of the overall file and it also holds the pointers to other sections. Elf has different kinds of sections but we are interested only in the program section. The osloader just loops over all the program headers and loads the content starting at the virtual address. The virtual address value can obtained from `p_vaddr` variable in the elf header. The header also has one more important parameter and that is the entry point (`e_entry`). This points to the location from which the code should start executing.
 
 UEFI has two kinds of services boot time and run time services. The OS cannot use the boot time services but it can make use of the run time services that are provided. So we need to provide a pointer to the structure.
 ``` C
@@ -156,7 +157,7 @@ typedef VOID (*freertos_elf)(EFI_RUNTIME_SERVICES* runtime);
 /** Inside main */
 /** declare function ptr */
 freertos_elf start_elf;
-.... 
+....
 /** Jump to the entry point */
 start_elf = (freertos_elf)EntryPoint;
 start_elf(gRT);
@@ -164,9 +165,9 @@ start_elf(gRT);
 The above code should be self explanatory. The 1st lines defines a function pointer to the main with a pointer to the UEFI runtime services as a parameter.  The start address of the FreeRTOS application is held by the `Entrypoint` variable. Finally you just call the function and this should start the FreeRTOS app.
 
 ### FreeRTOS Modifications
-I had to make a few modifications to the FreeRTOS application for it to work. 
+I had to make a few modifications to the FreeRTOS application for it to work.
 
-You need to include `UEFI.h` and modify the main function declaration so that it can accept the UEFI runtime services pointer. 
+You need to include `UEFI.h` and modify the main function declaration so that it can accept the UEFI runtime services pointer.
 ``` C
 #include <Uefi.h>
 EFI_RUNTIME_SERVICES  *uefi_services;
@@ -178,7 +179,7 @@ ARM has two modes of operation **ARM** and **Thumb** mode. When you jump from UE
 ``` Assembly
 /** Application code starts here */
 start:
-_start:r 
+_start:r
 _mainCRTStartup:
     .thumb
 thumb_entry_point:
@@ -186,7 +187,7 @@ thumb_entry_point:
     .arm
 arm_entry_point:
     /* store runtime pointer in r10 */
-    mov r10, r0 
+    mov r10, r0
     ....
     /* Load the pointer back to r0 */
     mov r0, r10
@@ -203,7 +204,7 @@ mrc   p15, 0, r1, c12, c0, 0
 ### Debugging UEFI
 We will be using `arm-none-eabi-gdb` to debug UEFI code on qemu. Gdb needs UEFI core application symbols and also you need add those of the application you developed. When you start qemu you will get a log at the beginning that looks like this.
 ```
-add-symbol-file path-to-edk2/Build/BeagleBoard/DEBUG_ARMLINUXGCC/ARM/Omap35xxPkg/MmcHostDxe/MmcHostDxe/DEBUG/MMC.dll 0x87AD0240 
+add-symbol-file path-to-edk2/Build/BeagleBoard/DEBUG_ARMLINUXGCC/ARM/Omap35xxPkg/MmcHostDxe/MmcHostDxe/DEBUG/MMC.dll 0x87AD0240
 ```
 You should see a number of lines that show the path and address for different `dll` files. You can either copy all those lines to a file and run the below command to load it or else you can just copy and paste it at the gdb prompt.
 ```
@@ -226,7 +227,7 @@ add-symbol-file path-to-file/osloader.dll 0x86E04240
 Copy the above line and paste it in to gdb and you should be able set the breakpoints and step in and out of the code.
 
 ### Conclusion
-I wrote this long post hoping that it will help anybody the trouble I went though to get to this point. When I started, I had problems getting qemu to work, after that point I did not have any idea about how to get gdb to debug my code. Finally I had problems with ARM FreeRTOS application, mainly with regards to the thumb mode and the vector table address. 
+I wrote this long post hoping that it will help anybody the trouble I went though to get to this point. When I started, I had problems getting qemu to work, after that point I did not have any idea about how to get gdb to debug my code. Finally I had problems with ARM FreeRTOS application, mainly with regards to the thumb mode and the vector table address.
 
 Please send me a mail if you need any additional info or if you find any mistakes.
 

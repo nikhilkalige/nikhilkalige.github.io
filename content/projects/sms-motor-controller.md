@@ -1,6 +1,7 @@
 Title: SMS Motor Contoller
 Slug: sms-motor-controller
 Project: True
+Date: 2015-03-10
 Summary: SMS Motor Controller is a product that can be used to control and monitor the status of a motor.
 Tags: Product, Hardware, Arduino, PCB, PHP, IOT
 
