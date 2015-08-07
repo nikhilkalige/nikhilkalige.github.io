@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Google Calendar Birthday Notifications for Android Contacts | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Add notifications to birthday events in google calendar">
+    <meta name="keywords" content="Google Calendar,Android,Javascript">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="wrapper">
+        <header>
+            <a class="title" href="/" itemprop="url">
+                <span>Short</span><span>Circuits</span>
+                <img class= "logo2" alt="site-logo" src="/static/images/logo.png">
+            </a>
+            <nav itemprop="breadcrumb">
+                <a href="/projects">Projects</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </nav>
+            <div class="clearfix"></div>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
+        <a href="/google-calendar-birthday-notifications.html" rel="bookmark"
+           title="Permalink to Google Calendar Birthday Notifications for Android Contacts">Google Calendar Birthday Notifications for Android&nbsp;Contacts</a>
+    </h1>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span>
+                    <time itemprop="dateCreated" datetime="2015-08-07">
+                        August 07, 2015
+                    </time>
+                </span>
+            </div>
+    <ul class="article-tag">
+        <li itemprop="keywords"><a href="/tag/google-calendar.html">Google Calendar</a></li>
+        <li itemprop="keywords"><a href="/tag/android.html">Android</a></li>
+        <li itemprop="keywords"><a href="/tag/javascript.html">Javascript</a></li>
+    </ul>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p>Android has a nice feature of synchronizing birthdays that you have included in the contacts.  It creates a new calendar named <strong>Birthdays</strong> which includes all the birthdays from the contacts as well as from the <strong>Google+</strong> circle if you want. But my problem is that it does not allow you to add notifications for those&nbsp;dates.</p>
+<p>I was thinking whether you could write a script to access the calendar and make some changes and voilà, I found out that google has a nice feature called <a href="https://developers.google.com/apps-script/%20%22App%20scripts">Appscripts</a> that allows you to write scripts that run on the google cloud. So I wrote a small script that adds this&nbsp;feature.</p>
+<h3>Setup</h3>
+<p>All you need to do to get started is go to <a href="https://script.google.com/">https://script.google.com/</a> and create a new blank project. Then you would need to give appropriate permissions to the project so it can access your data. To do that click <em>Resources -&gt; Advanced Google Services</em> and then enable <em>Calendar <span class="caps">API</span></em>. You would also need to enable access in *<a href="https://console.developers.google.com">Google Developers Console</a>&nbsp;too.</p>
+<h3>Calendar <span class="caps">API</span></h3>
+<p>The overall logic is to create a new calendar and clone the events from the Birthdays calendar into it. Also you need to add notifications and make it a recurring&nbsp;event.</p>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">addBdayNotifications</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">bdayCal</span><span class="p">,</span> <span class="nx">bdayNotifyCal</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">calendars</span> <span class="o">=</span> <span class="nx">CalendarApp</span><span class="p">.</span><span class="nx">getAllCalendars</span><span class="p">();</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">calendars</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">calendars</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getName</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Birthday Notifications&quot;</span><span class="p">)</span> <span class="nx">bdayNotifyCal</span> <span class="o">=</span> <span class="nx">calendars</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">calendars</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getName</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Birthdays&quot;</span><span class="p">)</span> <span class="nx">bdayCal</span> <span class="o">=</span> <span class="nx">calendars</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bdayCal</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bdayNotifyCal</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">bdayNotifyCal</span> <span class="o">=</span> <span class="nx">CalendarApp</span><span class="p">.</span><span class="nx">createCalendar</span><span class="p">(</span><span class="s2">&quot;Birthday Notifications&quot;</span><span class="p">);</span>
+        <span class="nx">bdayNotifyCal</span><span class="p">.</span><span class="nx">setHidden</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">currentYear</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">fromDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">currentYear</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">toDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">currentYear</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">31</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">bdayEvents</span> <span class="o">=</span> <span class="nx">bdayCal</span><span class="p">.</span><span class="nx">getEvents</span><span class="p">(</span><span class="nx">fromDate</span><span class="p">,</span> <span class="nx">toDate</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">notifyEvents</span> <span class="o">=</span> <span class="nx">bdayNotifyCal</span><span class="p">.</span><span class="nx">getEvents</span><span class="p">(</span><span class="nx">fromDate</span><span class="p">,</span> <span class="nx">toDate</span><span class="p">);</span>
+
+    <span class="c1">// Maintain a list of event titles</span>
+    <span class="kd">var</span> <span class="nx">notifyEventsTitle</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">notifyEvents</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">notifyEventsTitle</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">notifyEvents</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getTitle</span><span class="p">())</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">%</span> <span class="mi">25</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">bdayEvents</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">status</span> <span class="o">=</span> <span class="nx">createEvent</span><span class="p">(</span><span class="nx">bdayNotifyCal</span><span class="p">,</span> <span class="nx">notifyEventsTitle</span><span class="p">,</span>
+            <span class="nx">evt</span><span class="p">.</span><span class="nx">getTitle</span><span class="p">(),</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">getStartTime</span><span class="p">());</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="nx">items</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">items</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">})</span>
+
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;%s events added to the calendar&quot;</span><span class="p">,</span> <span class="nx">items</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createEvent</span><span class="p">(</span><span class="nx">cal</span><span class="p">,</span> <span class="nx">eventList</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">eventList</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">eventList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">title</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">cal</span><span class="p">.</span><span class="nx">createAllDayEventSeries</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">time</span><span class="p">,</span>
+        <span class="nx">CalendarApp</span><span class="p">.</span><span class="nx">newRecurrence</span><span class="p">().</span><span class="nx">addYearlyRule</span><span class="p">(),</span> <span class="p">{})</span>
+        <span class="p">.</span><span class="nx">setGuestsCanInviteOthers</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">setGuestsCanModify</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">setGuestsCanSeeGuests</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">addPopupReminder</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createTrigger</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="s2">&quot;addBdayNotifications&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">everyDays</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The above code is pretty straightforward. Initially you look for the necessary calendars from your list of owned calendars. You then create a new calendar for notifications if one doesn&#8217;t exist already. After that create a list of birthdays present in the current year from both the calendars. Then its all about looping over the event list and creating a new one if one doesn&#8217;t&nbsp;exist.</p>
+<p>During the event creation, you add an yearly recursion rule and set a pop-up&nbsp;reminder.</p>
+<p>You would probably not want to trigger the code to run every time you add a contact. So we will make use of <em><a href="https://developers.google.com/apps-script/guides/triggers/">Triggers</a></em> feature. It would have been nice if a trigger could be set on new event creation, but I could not find anything like that, therefore I added a daily&nbsp;trigger.</p>
+<p>You could run in to a problem where google complains that you are creating too may events, in order to go around that I have added some delays but I haven&#8217;t arrived at an optimum solution for&nbsp;that.</p>
+<p>Finally the last thing to do is to hide the calendar using <code>.setHidden(true)</code>. This is nice feature that hides the calendar in the <span class="caps">UI</span> and solves the problem of having multiple birthdays on your&nbsp;calendar.</p>
+<h3>Conclusion</h3>
+<p>This is not a bullet proof solution for the problem. I would love to know if its possible to do this in different manner without using&nbsp;scripts.</p>
+    </div>
+</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shortcircuits';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+        <div class="push"></div>
+    </div>
+
+    <footer>
+        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
+    </footer>
+</body>
+</html>

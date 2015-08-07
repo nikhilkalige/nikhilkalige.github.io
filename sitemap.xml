@@ -5,30 +5,37 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-06-19T13:12:33-00:00</lastmod>
+<lastmod>2015-08-07T14:13:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-06-19T13:12:33-00:00</lastmod>
+<lastmod>2015-08-07T14:13:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/about</loc>
-<lastmod>2015-06-19T13:05:29-07:00</lastmod>
+<lastmod>2015-06-19T13:12:57-07:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/contact</loc>
-<lastmod>2015-06-19T13:05:29-07:00</lastmod>
+<lastmod>2015-06-19T13:12:57-07:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>/google-calendar-birthday-notifications.html</loc>
+<lastmod>2015-08-07T00:00:00-07:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
 </url>
 
 <url>
@@ -50,6 +57,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-02-13T00:00:00-07:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
+</url>
+
+<url>
+<loc>/category/javascript.html</loc>
+<lastmod>2015-08-07T00:00:00-07:28</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -81,6 +95,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/iot.html</loc>
+<lastmod>2015-03-10T00:00:00-07:28</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/freertos.html</loc>
 <lastmod>2015-05-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
@@ -102,8 +123,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/iot.html</loc>
-<lastmod>2015-03-10T00:00:00-07:28</lastmod>
+<loc>/tag/javascript.html</loc>
+<lastmod>2015-08-07T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -144,8 +165,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/google-calendar.html</loc>
+<lastmod>2015-08-07T00:00:00-07:28</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/pcb.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/android.html</loc>
+<lastmod>2015-08-07T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
