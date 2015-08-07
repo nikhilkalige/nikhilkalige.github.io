@@ -4,196 +4,196 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>/</loc>
-<lastmod>2015-08-07T14:13:21-00:00</lastmod>
+<loc>http://shortcircuits.io/</loc>
+<lastmod>2015-08-07T14:44:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tags.html</loc>
-<lastmod>2015-08-07T14:13:21-00:00</lastmod>
+<loc>http://shortcircuits.io/tags.html</loc>
+<lastmod>2015-08-07T14:44:35-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/about</loc>
-<lastmod>2015-06-19T13:12:57-07:00</lastmod>
+<loc>http://shortcircuits.io/about</loc>
+<lastmod>2015-08-07T14:40:12-07:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/contact</loc>
-<lastmod>2015-06-19T13:12:57-07:00</lastmod>
+<loc>http://shortcircuits.io/contact</loc>
+<lastmod>2015-08-07T14:40:12-07:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/google-calendar-birthday-notifications.html</loc>
+<loc>http://shortcircuits.io/google-calendar-birthday-notifications.html</loc>
 <lastmod>2015-08-07T00:00:00-07:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>/uefi-with-beagleboard-using-qemu.html</loc>
+<loc>http://shortcircuits.io/uefi-with-beagleboard-using-qemu.html</loc>
 <lastmod>2015-05-10T00:00:00-07:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>/sms-motor-controller.html</loc>
+<loc>http://shortcircuits.io/sms-motor-controller.html</loc>
 <lastmod>2015-03-10T00:00:00-07:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>/flask-cache-dynamic-timeout.html</loc>
+<loc>http://shortcircuits.io/flask-cache-dynamic-timeout.html</loc>
 <lastmod>2015-02-13T00:00:00-07:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>/category/javascript.html</loc>
+<loc>http://shortcircuits.io/category/javascript.html</loc>
 <lastmod>2015-08-07T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/projects.html</loc>
+<loc>http://shortcircuits.io/category/projects.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/python.html</loc>
+<loc>http://shortcircuits.io/category/python.html</loc>
 <lastmod>2015-02-13T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/uefi.html</loc>
+<loc>http://shortcircuits.io/category/uefi.html</loc>
 <lastmod>2015-05-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/product.html</loc>
+<loc>http://shortcircuits.io/tag/product.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/iot.html</loc>
+<loc>http://shortcircuits.io/tag/iot.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/freertos.html</loc>
+<loc>http://shortcircuits.io/tag/freertos.html</loc>
 <lastmod>2015-05-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/arduino.html</loc>
+<loc>http://shortcircuits.io/tag/arduino.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/python.html</loc>
+<loc>http://shortcircuits.io/tag/python.html</loc>
 <lastmod>2015-02-13T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/javascript.html</loc>
+<loc>http://shortcircuits.io/tag/javascript.html</loc>
 <lastmod>2015-08-07T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/beagleboard.html</loc>
+<loc>http://shortcircuits.io/tag/beagleboard.html</loc>
 <lastmod>2015-05-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/flask-cache.html</loc>
+<loc>http://shortcircuits.io/tag/flask-cache.html</loc>
 <lastmod>2015-02-13T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/hardware.html</loc>
+<loc>http://shortcircuits.io/tag/hardware.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/flask.html</loc>
+<loc>http://shortcircuits.io/tag/flask.html</loc>
 <lastmod>2015-02-13T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/uefi.html</loc>
+<loc>http://shortcircuits.io/tag/uefi.html</loc>
 <lastmod>2015-05-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/google-calendar.html</loc>
+<loc>http://shortcircuits.io/tag/google-calendar.html</loc>
 <lastmod>2015-08-07T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/pcb.html</loc>
+<loc>http://shortcircuits.io/tag/pcb.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/android.html</loc>
+<loc>http://shortcircuits.io/tag/android.html</loc>
 <lastmod>2015-08-07T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/php.html</loc>
+<loc>http://shortcircuits.io/tag/php.html</loc>
 <lastmod>2015-03-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/qemu.html</loc>
+<loc>http://shortcircuits.io/tag/qemu.html</loc>
 <lastmod>2015-05-10T00:00:00-07:28</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
