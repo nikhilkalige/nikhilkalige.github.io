@@ -5,6 +5,8 @@ import sys
 
 sys.path.append('.')
 import filter_tags
+from figure_alt_caption import makeExtension
+
 
 AUTHOR = u'Nikhil K'
 SITENAME = u'ShortCircuits'
@@ -41,6 +43,7 @@ PAGE_SAVE_AS = 'projects/{slug}.html'
 
 DIRECT_TEMPLATES = ('index', 'tags', 'projects')
 JINJA_EXTENSIONS = ['jinja2.ext.loopcontrols', 'jinja2.ext.with_', 'jinja2.ext.do']
+MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', makeExtension()]
 JINJA_FILTERS = {
     "gtag": filter_tags.group_tags
 }
