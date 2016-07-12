@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>ShortCircuits</title><link href="http://shortcircuits.io/" rel="alternate"></link><link href="http://shortcircuits.io/feeds/all.atom.xml" rel="self"></link><id>http://shortcircuits.io/</id><updated>2015-08-07T00:00:00-07:00</updated><entry><title>Google Calendar Birthday Notifications for Android Contacts</title><link href="http://shortcircuits.io/google-calendar-birthday-notifications.html" rel="alternate"></link><updated>2015-08-07T00:00:00-07:00</updated><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-08-07:google-calendar-birthday-notifications.html</id><summary type="html">&lt;p&gt;Android has a nice feature of synchronizing birthdays that you have included in the contacts.  It creates a new calendar named &lt;strong&gt;Birthdays&lt;/strong&gt; which includes all the birthdays from the contacts as well as from the &lt;strong&gt;Google+&lt;/strong&gt; circle if you want. But my problem is that it does not allow you to add notifications for those&amp;nbsp;dates.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>ShortCircuits</title><link href="http://shortcircuits.io/" rel="alternate"></link><link href="http://shortcircuits.io/feeds/all.atom.xml" rel="self"></link><id>http://shortcircuits.io/</id><updated>2015-08-07T00:00:00-07:00</updated><entry><title>Google Calendar Birthday Notifications for Android Contacts</title><link href="http://shortcircuits.io/google-calendar-birthday-notifications.html" rel="alternate"></link><published>2015-08-07T00:00:00-07:00</published><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-08-07:google-calendar-birthday-notifications.html</id><summary type="html">&lt;p&gt;Android has a nice feature of synchronizing birthdays that you have included in the contacts.  It creates a new calendar named &lt;strong&gt;Birthdays&lt;/strong&gt; which includes all the birthdays from the contacts as well as from the &lt;strong&gt;Google+&lt;/strong&gt; circle if you want. But my problem is that it does not allow you to add notifications for those&amp;nbsp;dates.&lt;/p&gt;
 &lt;p&gt;I was thinking whether you could write a script to access the calendar and make some changes and voilà, I found out that google has a nice feature called &lt;a href="https://developers.google.com/apps-script/%20%22App%20scripts"&gt;Appscripts&lt;/a&gt; that allows you to write scripts that run on the google cloud. So I wrote a small script that adds this&amp;nbsp;feature.&lt;/p&gt;
 &lt;h3&gt;Setup&lt;/h3&gt;
 &lt;p&gt;All you need to do to get started is go to &lt;a href="https://script.google.com/"&gt;https://script.google.com/&lt;/a&gt; and create a new blank project. Then you would need to give appropriate permissions to the project so it can access your data. To do that click &lt;em&gt;Resources -&amp;gt; Advanced Google Services&lt;/em&gt; and then enable &lt;em&gt;Calendar &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/em&gt;. You would also need to enable access in *&lt;a href="https://console.developers.google.com"&gt;Google Developers Console&lt;/a&gt;&amp;nbsp;too.&lt;/p&gt;
 &lt;h3&gt;Calendar &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;The overall logic is to create a new calendar and clone the events from the Birthdays calendar into it. Also you need to add notifications and make it a recurring&amp;nbsp;event.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;addBdayNotifications&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;addBdayNotifications&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;bdayCal&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;bdayNotifyCal&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;calendars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;CalendarApp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getAllCalendars&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -79,49 +79,49 @@
 &lt;p&gt;You could run in to a problem where google complains that you are creating too may events, in order to go around that I have added some delays but I haven&amp;#8217;t arrived at an optimum solution for&amp;nbsp;that.&lt;/p&gt;
 &lt;p&gt;Finally the last thing to do is to hide the calendar using &lt;code&gt;.setHidden(true)&lt;/code&gt;. This is nice feature that hides the calendar in the &lt;span class="caps"&gt;UI&lt;/span&gt; and solves the problem of having multiple birthdays on your&amp;nbsp;calendar.&lt;/p&gt;
 &lt;h3&gt;Conclusion&lt;/h3&gt;
-&lt;p&gt;This is not a bullet proof solution for the problem. I would love to know if its possible to do this in different manner without using&amp;nbsp;scripts.&lt;/p&gt;</summary><category term="Google Calendar"></category><category term="Android"></category><category term="Javascript"></category></entry><entry><title>UEFI with BeagleBoard on Ubuntu using Qemu</title><link href="http://shortcircuits.io/uefi-with-beagleboard-using-qemu.html" rel="alternate"></link><updated>2015-05-10T00:00:00-07:00</updated><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-05-10:uefi-with-beagleboard-using-qemu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.uefi.org/" title="UEFI"&gt;Unified Extensible Firmware Interface(&lt;span class="caps"&gt;UEFI&lt;/span&gt;)&lt;/a&gt; is the new standard that is being developed in order to replace &lt;span class="caps"&gt;BIOS&lt;/span&gt;. &lt;span class="caps"&gt;UEFI&lt;/span&gt; was first developed by Intel and was later joined by other organizations.  All the open source components of Intel&amp;#8217;s implementation of &lt;span class="caps"&gt;UEFI&lt;/span&gt; is currently hosted at &lt;a href="http://www.tianocore.org/" title="Tianocore"&gt;tianocore&lt;/a&gt; website. &lt;a href="http://www.tianocore.org/edk2/" title="EDK2"&gt;&lt;span class="caps"&gt;EDK&lt;/span&gt; &lt;span class="caps"&gt;II&lt;/span&gt;&lt;/a&gt;  is a modern, feature-rich, cross-platform firmware development environment for the &lt;span class="caps"&gt;UEFI&lt;/span&gt; and &lt;span class="caps"&gt;PI&lt;/span&gt;&amp;nbsp;specifications.&lt;/p&gt;
+&lt;p&gt;This is not a bullet proof solution for the problem. I would love to know if its possible to do this in different manner without using&amp;nbsp;scripts.&lt;/p&gt;</summary><category term="Google Calendar"></category><category term="Android"></category><category term="Javascript"></category></entry><entry><title>UEFI with BeagleBoard on Ubuntu using Qemu</title><link href="http://shortcircuits.io/uefi-with-beagleboard-using-qemu.html" rel="alternate"></link><published>2015-05-10T00:00:00-07:00</published><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-05-10:uefi-with-beagleboard-using-qemu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.uefi.org/" title="UEFI"&gt;Unified Extensible Firmware Interface(&lt;span class="caps"&gt;UEFI&lt;/span&gt;)&lt;/a&gt; is the new standard that is being developed in order to replace &lt;span class="caps"&gt;BIOS&lt;/span&gt;. &lt;span class="caps"&gt;UEFI&lt;/span&gt; was first developed by Intel and was later joined by other organizations.  All the open source components of Intel&amp;#8217;s implementation of &lt;span class="caps"&gt;UEFI&lt;/span&gt; is currently hosted at &lt;a href="http://www.tianocore.org/" title="Tianocore"&gt;tianocore&lt;/a&gt; website. &lt;a href="http://www.tianocore.org/edk2/" title="EDK2"&gt;&lt;span class="caps"&gt;EDK&lt;/span&gt; &lt;span class="caps"&gt;II&lt;/span&gt;&lt;/a&gt;  is a modern, feature-rich, cross-platform firmware development environment for the &lt;span class="caps"&gt;UEFI&lt;/span&gt; and &lt;span class="caps"&gt;PI&lt;/span&gt;&amp;nbsp;specifications.&lt;/p&gt;
 &lt;p&gt;In this article, we will be going over how to setup edk2 for beagleboard on Ubuntu 14.04. I will be using qemu in order to simulate beagleboard. Finally we will develop an osloader that can load a &lt;a href="www.freertos.org" title="FreeRTOS"&gt;FreeRTOS&lt;/a&gt;&amp;nbsp;application.&lt;/p&gt;
 &lt;h3&gt;Creating SdCard&amp;nbsp;Image&lt;/h3&gt;
 &lt;p&gt;In order to boot beagleboard, we need the sdcard image with u-boot in it. We will be using &lt;strong&gt;linaro image creator&lt;/strong&gt; to create the image file. Linaro group maintains a ppa from which we can install these&amp;nbsp;tools.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo add-apt-repository ppa:linaro-maintainers/tools
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo add-apt-repository ppa:linaro-maintainers/tools
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo apt-get update
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo apt-get install linaro-image-tools
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We also need a few additional files to create the&amp;nbsp;image.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; wget http://releases.linaro.org/platform/linaro-m/hwpacks/final/hwpack_linaro-omap3_20101109-1_armel_supported.tar.gz
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; wget http://releases.linaro.org/platform/linaro-m/hwpacks/final/hwpack_linaro-omap3_20101109-1_armel_supported.tar.gz
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; wget http://releases.linaro.org/platform/linaro-m/headless/release-candidate/linaro-m-headless-tar-20101101-0.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now we can create the sdcard image file with the following&amp;nbsp;commands&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo linaro-media-create --image_file beagle_sd.img --dev beagle --binary linaro-m-headless-tar-20101101-0.tar.gz --hwpack hwpack_linaro-omap3_20101109-1_armel_supported.tar.gz
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo linaro-media-create --image_file beagle_sd.img --dev beagle --binary linaro-m-headless-tar-20101101-0.tar.gz --hwpack hwpack_linaro-omap3_20101109-1_armel_supported.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This will create a &lt;code&gt;beagle_sd.img&lt;/code&gt; image file in your current&amp;nbsp;directory.&lt;/p&gt;
 &lt;h3&gt;Mounting SdCard&amp;nbsp;Image&lt;/h3&gt;
 &lt;p&gt;I spent some time trying to figure out how to mount the sdcard to access the files. I have listed the commands used to mount the&amp;nbsp;sdcard.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; fdisk -l beagle_sd.img
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; fdisk -l beagle_sd.img
 &lt;span class="go"&gt;        Device Boot      Start         End      Blocks   Id  System&lt;/span&gt;
 &lt;span class="go"&gt;beagle_sd.img1   *          63      106494       53216    c  W95 FAT32 (LBA)&lt;/span&gt;
 &lt;span class="go"&gt;beagle_sd.img2          106496     6291455     3092480   83  Linux&lt;/span&gt;
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; mkdir /tmp/beagle
-&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo mount -o loop,offset&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$[&lt;/span&gt;63*512&lt;span class="o"&gt;]&lt;/span&gt; beagle_sd.img /tmp/beagle
+&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo mount -o loop,offset&lt;span class="o"&gt;=&lt;/span&gt;$&lt;span class="o"&gt;[&lt;/span&gt;63*512&lt;span class="o"&gt;]&lt;/span&gt; beagle_sd.img /tmp/beagle
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You will notice that the value I used in &lt;code&gt;$[63*512]&lt;/code&gt; is the same value I get from &lt;code&gt;fdisk&lt;/code&gt; command under &lt;code&gt;Start&lt;/code&gt;. So you should replace 63 by the value you&amp;nbsp;get.&lt;/p&gt;
 &lt;p&gt;The mounted sd card has the following&amp;nbsp;files&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;boot.ini  boot.scr  boot.txt  MLO  u-boot.bin  uImage  uInitrd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;boot.ini  boot.scr  boot.txt  MLO  u-boot.bin  uImage  uInitrd&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Install&amp;nbsp;Qemu&lt;/h3&gt;
 &lt;p&gt;Installing Qemu in Ubuntu is very easy as it exists in the system repository. But the main qemu branch does not support beagleboard. Linaro has forked qemu and they have added support for beagle board in their release. I was unable to find a ppa for that release. We need to install it from the &lt;a href="git://git.linaro.org/qemu/qemu-linaro.git" title="linaro qemu"&gt;source&lt;/a&gt;, but if you install the latest release which is currently at &lt;code&gt;0677e6e&lt;/code&gt;, you will be able to boot the system but you will be unable to browse the contents of the sdcard which is essential if you need to run an &lt;span class="caps"&gt;UEFI&lt;/span&gt;&amp;nbsp;application.&lt;/p&gt;
 &lt;p&gt;I found that a older version of the code works and you can download the zip file from &lt;a href="https://launchpad.net/~linaro-maintainers/+archive/ubuntu/tools/+files/qemu-linaro_1.5.0-2013.06+git74+20130802+ef1b0ae.orig.tar.bz2" title="linaro-qemu zip"&gt;here&lt;/a&gt;. Extract the file and then use the below commands to install qemu. If you directly use the below commands, the build will fail with an error related to &lt;code&gt;fdt32_t&lt;/code&gt;. So you have to patch &lt;code&gt;include/libfdt_env.h&lt;/code&gt; file by adding the below lines after line&amp;nbsp;22.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#ifdef __CHECKER__&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#ifdef __CHECKER__&lt;/span&gt;
     &lt;span class="cp"&gt;#define __force __attribute__((force))&lt;/span&gt;
     &lt;span class="cp"&gt;#define __bitwise __attribute__((bitwise))&lt;/span&gt;
 &lt;span class="cp"&gt;#else&lt;/span&gt;
@@ -129,13 +129,13 @@
     &lt;span class="cp"&gt;#define __bitwise&lt;/span&gt;
 &lt;span class="cp"&gt;#endif&lt;/span&gt;
 
-&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;uint16_t&lt;/span&gt; &lt;span class="n"&gt;__bitwise&lt;/span&gt; &lt;span class="kt"&gt;fdt16_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;uint32_t&lt;/span&gt; &lt;span class="n"&gt;__bitwise&lt;/span&gt; &lt;span class="kt"&gt;fdt32_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="n"&gt;__bitwise&lt;/span&gt; &lt;span class="kt"&gt;fdt64_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;uint16_t&lt;/span&gt; &lt;span class="n"&gt;__bitwise&lt;/span&gt; &lt;span class="n"&gt;fdt16_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;uint32_t&lt;/span&gt; &lt;span class="n"&gt;__bitwise&lt;/span&gt; &lt;span class="n"&gt;fdt32_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="n"&gt;__bitwise&lt;/span&gt; &lt;span class="n"&gt;fdt64_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo apt-get build-dep qemu
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo apt-get build-dep qemu
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; ./configure --target-list&lt;span class="o"&gt;=&lt;/span&gt;arm-softmmu --prefix&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/qemu
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; make
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; make install
@@ -143,19 +143,19 @@
 
 
 &lt;p&gt;The above commands will install qemu into &lt;code&gt;qemu&lt;/code&gt; folder in your home directory. Now add the directory to you path by editing your &lt;code&gt;.bashrc&lt;/code&gt; file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;PATH=$PATH:~/qemu/bin&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;PATH=$PATH:~/qemu/bin&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now &lt;code&gt;qemu-system-arm&lt;/code&gt; command should be available at&amp;nbsp;prompt.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; qemu-system-arm --version
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; qemu-system-arm --version
 &lt;span class="go"&gt;QEMU emulator version 1.5.0 (qemu-linaro from git), Copyright (c) 2003-2008 Fabrice Bellard&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Testing&amp;nbsp;Qemu&lt;/h3&gt;
 &lt;p&gt;At this point, we can test whether qemu is working with the sd card image we generated. When you run the below command you should get the u-boot&amp;nbsp;prompt.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
 &lt;span class="go"&gt;Texas Instruments X-Loader 1.4.4ss (Sep 30 2010 - 14:44:32)&lt;/span&gt;
 &lt;span class="go"&gt;Beagle Rev C4&lt;/span&gt;
 &lt;span class="go"&gt;Reading boot sector&lt;/span&gt;
@@ -165,13 +165,13 @@
 
 &lt;h3&gt;Building &lt;span class="caps"&gt;UEFI&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;In order to build &lt;span class="caps"&gt;UEFI&lt;/span&gt;, we need the Arm toolchain. Follow the simple instructions below and you should be able to generate the  file without any&amp;nbsp;trouble.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo apt-get install gcc-arm-linux-gnueabi
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; sudo apt-get install gcc-arm-linux-gnueabi
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; gcc-arm-linux-gnueabi --version
 &lt;span class="go"&gt;arm-linux-gnueabi-gcc (Ubuntu/Linaro 4.7.3-12ubuntu1) 4.7.3&lt;/span&gt;
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; git clone https://github.com/tianocore/edk2.git
-&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;edk2
-&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; &lt;span class="nb"&gt;source &lt;/span&gt;edksetup.sh
-&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;BeagleBoardPkg
+&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; edk2
+&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; &lt;span class="nb"&gt;source&lt;/span&gt; edksetup.sh
+&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; BeagleBoardPkg
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; ./build.sh
 &lt;span class="gp"&gt;user@bash:$&lt;/span&gt; ls ../Build/BeagleBoard/DEBUG_ARMLINUXGCC/FV/
 &lt;/pre&gt;&lt;/div&gt;
@@ -179,12 +179,12 @@
 
 &lt;p&gt;Now you should be able to see &lt;code&gt;BEAGLEBOARD_EFI.FD&lt;/code&gt; which is the file we will be using to boot &lt;span class="caps"&gt;UEFI&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Mount the sdcard using the commands that were given in the beginning. Now we need to replace the &lt;code&gt;u-boot.bin&lt;/code&gt; file with the &lt;code&gt;BEAGLEBOARD_EFI.fd&lt;/code&gt; file in the sdcard. Lets now start &lt;span class="caps"&gt;UEFI&lt;/span&gt; on the beagle&amp;nbsp;board.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; qemu-system-arm -M beagle -sd beagle_sd.img -serial stdio -clock unix
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This will start the qemu and after that it prints some gibberish and then you should get the boot selection option of &lt;span class="caps"&gt;UEFI&lt;/span&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;The default boot selection will start in   5 seconds
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;The default boot selection will start in   5 seconds
 [1] Linux from SD
 ......
 [2] Shell
@@ -206,7 +206,7 @@ Start:
 &lt;/ul&gt;
 &lt;p&gt;So it is as simple as&amp;nbsp;that.&lt;/p&gt;
 &lt;p&gt;We need to install &lt;a href="http://www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/" title="Mentor Graphics Codebench"&gt;CodeSourcery toolchain&lt;/a&gt; to be able to compile the FreeRTOS code. I downloaded the lite version and installed it and added it to my path. If you did this right at the end you should be able to run the below&amp;nbsp;command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; arm-none-eabi-gcc --version
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bash:$&lt;/span&gt; arm-none-eabi-gcc --version
 &lt;span class="go"&gt;arm-none-eabi-gcc (Sourcery CodeBench 2014.11-36) 4.9.1&lt;/span&gt;
 &lt;span class="go"&gt;Copyright (C) 2014 Free Software Foundation, Inc.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -216,7 +216,7 @@ Start:
 &lt;h3&gt;Loading Application in to&amp;nbsp;memory&lt;/h3&gt;
 &lt;p&gt;Compiling FreeRTOS will generate an &lt;code&gt;elf&lt;/code&gt; file and we need to load this file in to the memory. Elf file has a very simple file format and &lt;code&gt;readelf&lt;/code&gt; is command that is very handy. Elf has a main header that holds the gist of the overall file and it also holds the pointers to other sections. Elf has different kinds of sections but we are interested only in the program section. The osloader just loops over all the program headers and loads the content starting at the virtual address. The virtual address value can obtained from &lt;code&gt;p_vaddr&lt;/code&gt; variable in the elf header. The header also has one more important parameter and that is the entry point (&lt;code&gt;e_entry&lt;/code&gt;). This points to the location from which the code should start&amp;nbsp;executing.&lt;/p&gt;
 &lt;p&gt;&lt;span class="caps"&gt;UEFI&lt;/span&gt; has two kinds of services boot time and run time services. The &lt;span class="caps"&gt;OS&lt;/span&gt; cannot use the boot time services but it can make use of the run time services that are provided. So we need to provide a pointer to the&amp;nbsp;structure.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/** Function pointer to FreeRTOS main  */&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/** Function pointer to FreeRTOS main  */&lt;/span&gt;
 &lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="nf"&gt;VOID&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;freertos_elf&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;EFI_RUNTIME_SERVICES&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;runtime&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
 &lt;span class="cm"&gt;/** Inside main */&lt;/span&gt;
@@ -233,7 +233,7 @@ Start:
 &lt;h3&gt;FreeRTOS&amp;nbsp;Modifications&lt;/h3&gt;
 &lt;p&gt;I had to make a few modifications to the FreeRTOS application for it to&amp;nbsp;work.&lt;/p&gt;
 &lt;p&gt;You need to include &lt;code&gt;UEFI.h&lt;/code&gt; and modify the main function declaration so that it can accept the &lt;span class="caps"&gt;UEFI&lt;/span&gt; runtime services&amp;nbsp;pointer.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;Uefi.h&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Uefi.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;EFI_RUNTIME_SERVICES&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;uefi_services&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pointer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;uefi_services&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;EFI_RUNTIME_SERVICES&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;pointer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -241,7 +241,7 @@ Start:
 
 
 &lt;p&gt;&lt;span class="caps"&gt;ARM&lt;/span&gt; has two modes of operation &lt;strong&gt;&lt;span class="caps"&gt;ARM&lt;/span&gt;&lt;/strong&gt; and &lt;strong&gt;Thumb&lt;/strong&gt; mode. When you jump from &lt;span class="caps"&gt;UEFI&lt;/span&gt; it seems to be in thumb mode whereas our application was compiled in arm mode. So we basically check and  then make a switch to arm mode if needed. The pointer value also needs to stored as we will be using the registers for other&amp;nbsp;operations.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/** Application code starts here */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/** Application code starts here */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="nl"&gt;start&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="nl"&gt;_start&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;r&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="nl"&gt;_mainCRTStartup&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -261,7 +261,7 @@ Start:
 
 
 &lt;p&gt;The exception vector table that is responsible for handling interrupts in &lt;span class="caps"&gt;ARM&lt;/span&gt; can be moved around. &lt;span class="caps"&gt;UEFI&lt;/span&gt; uses a different location and in order for our interrupts to work we need to relocate the vector table&amp;nbsp;address.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ldr   r0, =0x40014000
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ldr   r0, =0x40014000
 mcr   p15, 0, r0, c12, c0, 0
 mrc   p15, 0, r1, c12, c0, 0
 &lt;/pre&gt;&lt;/div&gt;
@@ -269,27 +269,27 @@ mrc   p15, 0, r1, c12, c0, 0
 
 &lt;h3&gt;Debugging &lt;span class="caps"&gt;UEFI&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;We will be using &lt;code&gt;arm-none-eabi-gdb&lt;/code&gt; to debug &lt;span class="caps"&gt;UEFI&lt;/span&gt; code on qemu. Gdb needs &lt;span class="caps"&gt;UEFI&lt;/span&gt; core application symbols and also you need add those of the application you developed. When you start qemu you will get a log at the beginning that looks like&amp;nbsp;this.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;add-symbol-file path-to-edk2/Build/BeagleBoard/DEBUG_ARMLINUXGCC/ARM/Omap35xxPkg/MmcHostDxe/MmcHostDxe/DEBUG/MMC.dll 0x87AD0240
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;add-symbol-file path-to-edk2/Build/BeagleBoard/DEBUG_ARMLINUXGCC/ARM/Omap35xxPkg/MmcHostDxe/MmcHostDxe/DEBUG/MMC.dll 0x87AD0240
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You should see a number of lines that show the path and address for different &lt;code&gt;dll&lt;/code&gt; files. You can either copy all those lines to a file and run the below command to load it or else you can just copy and paste it at the gdb&amp;nbsp;prompt.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) source filename
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;(gdb) source filename
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Finally you need to add the symbol for your &lt;span class="caps"&gt;UEFI&lt;/span&gt;  and freertos application. You can load the freertos symbols&amp;nbsp;using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) add-symbol-file path-to-file/rtosdemo.elf 0x80300000
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;(gdb) add-symbol-file path-to-file/rtosdemo.elf 0x80300000
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Copy  &lt;code&gt;rtosdemo.elf&lt;/code&gt; and  &lt;code&gt;osloader.efi&lt;/code&gt; file to the sdcard and then start qemu but now add &lt;code&gt;-s&lt;/code&gt; to enable debugging using gdb. Connect gdb to qemu with the below&amp;nbsp;command&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;(gdb) target remote :1234
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;(gdb) target remote :1234
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You should get the &lt;span class="caps"&gt;UEFI&lt;/span&gt; shell prompt as was shown above. Now we just need to run the&amp;nbsp;osloader.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Shell&amp;gt; fs0:
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Shell&amp;gt; fs0:
 FS0:\&amp;gt; osloader.efi
 add-symbol-file path-to-file/osloader.dll 0x86E04240
 &lt;/pre&gt;&lt;/div&gt;
@@ -306,7 +306,7 @@ add-symbol-file path-to-file/osloader.dll 0x86E04240
 &lt;li&gt;&lt;a href="http://tianocore.sourceforge.net/wiki/BeagleBoardPkg" title="beagleboard tianocore"&gt;Tianocore&amp;nbsp;Beagleboard&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/fgken/uefi-bootloader" title="UEFI Bootloader"&gt;&lt;span class="caps"&gt;UEFI&lt;/span&gt;&amp;nbsp;Bootloader&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/NikhilKalige/uefi_freertos_beagleboard" title="UEFI freertos beagleboard"&gt;Source&amp;nbsp;Code&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="UEFI"></category><category term="Beagleboard"></category><category term="FreeRTOS"></category><category term="Qemu"></category></entry><entry><title>SMS Motor Contoller</title><link href="http://shortcircuits.io/sms-motor-controller.html" rel="alternate"></link><updated>2015-03-10T00:00:00-07:00</updated><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-03-10:sms-motor-controller.html</id><summary type="html">&lt;p&gt;3 phase &lt;span class="caps"&gt;SMS&lt;/span&gt; based motor controller is a product that can be used to control and monitor the status of a irrigation motor(can be used to control anything, but it was targeted to control irrigation motors).
+&lt;/ol&gt;</summary><category term="UEFI"></category><category term="Beagleboard"></category><category term="FreeRTOS"></category><category term="Qemu"></category></entry><entry><title>SMS Motor Contoller</title><link href="http://shortcircuits.io/sms-motor-controller.html" rel="alternate"></link><published>2015-03-10T00:00:00-07:00</published><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-03-10:sms-motor-controller.html</id><summary type="html">&lt;p&gt;3 phase &lt;span class="caps"&gt;SMS&lt;/span&gt; based motor controller is a product that can be used to control and monitor the status of a irrigation motor(can be used to control anything, but it was targeted to control irrigation motors).
 &lt;img alt="SMS Controller Product Image" src="http://shortcircuits.io/images/sms_controller/final1.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;The product specifications is listed&amp;nbsp;below&lt;/p&gt;
 &lt;ul&gt;
@@ -368,17 +368,17 @@ add-symbol-file path-to-file/osloader.dll 0x86E04240
 &lt;li&gt;&lt;a href="https://github.com/NikhilKalige/arduino_gsm_tcp_bootloader"&gt;&lt;span class="caps"&gt;TCP&lt;/span&gt; Boot&amp;nbsp;loader&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://bitbucket.org/nikhilkalige/motor-website"&gt;Motor&amp;nbsp;Website&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/NikhilKalige/sms-controller-qp"&gt;Firmware based on Quantum&amp;nbsp;Leaps&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Product"></category><category term="Hardware"></category><category term="Arduino"></category><category term="PCB"></category><category term="PHP"></category><category term="IOT"></category></entry><entry><title>Flask-Cache dynamic timeout</title><link href="http://shortcircuits.io/flask-cache-dynamic-timeout.html" rel="alternate"></link><updated>2015-02-13T00:00:00-07:00</updated><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-02-13:flask-cache-dynamic-timeout.html</id><summary type="html">&lt;p&gt;If you have used &lt;a href="http://flask.pocoo.org/" title="Flask"&gt;Flask&lt;/a&gt; and are in need of caching views, then you will be familiar with &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt;. &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt; provides you with a very simple interface in order to setup cache for your&amp;nbsp;application.&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Product"></category><category term="Hardware"></category><category term="Arduino"></category><category term="PCB"></category><category term="PHP"></category><category term="IOT"></category></entry><entry><title>Flask-Cache dynamic timeout</title><link href="http://shortcircuits.io/flask-cache-dynamic-timeout.html" rel="alternate"></link><published>2015-02-13T00:00:00-07:00</published><author><name>Nikhil K</name></author><id>tag:shortcircuits.io,2015-02-13:flask-cache-dynamic-timeout.html</id><summary type="html">&lt;p&gt;If you have used &lt;a href="http://flask.pocoo.org/" title="Flask"&gt;Flask&lt;/a&gt; and are in need of caching views, then you will be familiar with &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt;. &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt; provides you with a very simple interface in order to setup cache for your&amp;nbsp;application.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt; extension provides you with a way to set a specific time-out for your view function when you enable cache for that view as&amp;nbsp;follows.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@cache.cached&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@cache.cached&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;But it does not provide you the ability to set time-outs dynamically. I came across a use case where I was calling a view function with different parameters and wanted the view to be cached until a fixed specific time and in my case it was&amp;nbsp;midnight.&lt;/p&gt;
 &lt;p&gt;Below is the implementation of the cached decorator in &lt;a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache"&gt;Flask-cache&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;cached&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key_prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;view/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unless&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;cached&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key_prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;view/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unless&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="nd"&gt;@functools.wraps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorated_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -401,7 +401,7 @@ add-symbol-file path-to-file/osloader.dll 0x86E04240
 
 &lt;p&gt;You can see that the decorator directly passes the &lt;code&gt;timeout&lt;/code&gt; parameter as a parameter to the &lt;code&gt;cache.set&lt;/code&gt; function. So this removes the possibility of passing a function to dynamically set the&amp;nbsp;timeout.&lt;/p&gt;
 &lt;p&gt;So I decided to write a decorator which decorates the &lt;code&gt;cached&lt;/code&gt; decorator. Below is the decorator function I wrote that sets the time-out to 23:59&amp;nbsp;hours.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;cache_timeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;cache_timeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="nd"&gt;@functools.wraps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorated_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -414,11 +414,11 @@ add-symbol-file path-to-file/osloader.dll 0x86E04240
 
 
 &lt;p&gt;The &lt;code&gt;cache_timeout&lt;/code&gt; decorator can then be used&amp;nbsp;as&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/stats&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/stats&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="nd"&gt;@cache_timeout&lt;/span&gt;
 &lt;span class="nd"&gt;@cache.cached&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;stats&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

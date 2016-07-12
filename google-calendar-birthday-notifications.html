@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Google Calendar Birthday Notifications for Android Contacts | ShortCircuits</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
     <link rel="stylesheet" href="http://shortcircuits.io/static/css/index.min.css"/>
     <link rel="shortcut icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
@@ -22,41 +23,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TRCDV4');</script>
 <!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
     <div class="wrapper">
         <header>
-            <a class="title" href="http://shortcircuits.io/" itemprop="url">
-                <span>Short</span><span>Circuits</span>
-                <img class= "logo2" alt="site-logo" src="http://shortcircuits.io/static/images/logo.png">
-            </a>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="http://shortcircuits.io/" itemprop="url">
+                    <img alt="Logo" src="http://shortcircuits.io/static/images/logo.svg" />
+                </a>
+            </div>
             <nav itemprop="breadcrumb">
-                <a href="http://shortcircuits.io/projects">Projects</a>
-                <a href="http://shortcircuits.io/about">About</a>
-                <a href="http://shortcircuits.io/contact">Contact</a>
+                <ul>
+                    <li><a href="http://shortcircuits.io/projects">Projects</a></li>
+                    <li><a href="http://shortcircuits.io/">Blog</a></li>
+                    <li><a href="http://shortcircuits.io/about">About</a></li>
+                </ul>
             </nav>
-            <div class="clearfix"></div>
         </header>
 
         <section id="container" itemprop="http://schema.org/mainContentOfPage">
 <article itemscope itemtype="http://schema.org/Article">
-    <h1 class="title" itemprop="name">
+    <h2 class="title" itemprop="name">
         <a href="http://shortcircuits.io/google-calendar-birthday-notifications.html" rel="bookmark"
            title="Permalink to Google Calendar Birthday Notifications for Android Contacts">Google Calendar Birthday Notifications for Android&nbsp;Contacts</a>
-    </h1>
+    </h2>
 
     <div class="post-header">
         <div class="meta-info">
             <div class="post-date">
-                <span>
-                    <time itemprop="dateCreated" datetime="2015-08-07">
-                        August 07, 2015
-                    </time>
+                <span itemprop="dateCreated" datetime="2015-08-07">
+                    August 07, 2015
                 </span>
             </div>
-    <ul class="article-tag">
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/google-calendar.html">Google Calendar</a></li>
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/android.html">Android</a></li>
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/javascript.html">Javascript</a></li>
-    </ul>
         </div>
     </div>
     <div class="post-body" itemprop="articleBody">
@@ -66,7 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>All you need to do to get started is go to <a href="https://script.google.com/">https://script.google.com/</a> and create a new blank project. Then you would need to give appropriate permissions to the project so it can access your data. To do that click <em>Resources -&gt; Advanced Google Services</em> and then enable <em>Calendar <span class="caps">API</span></em>. You would also need to enable access in *<a href="https://console.developers.google.com">Google Developers Console</a>&nbsp;too.</p>
 <h3>Calendar <span class="caps">API</span></h3>
 <p>The overall logic is to create a new calendar and clone the events from the Birthdays calendar into it. Also you need to add notifications and make it a recurring&nbsp;event.</p>
-<div class="highlight"><pre><span class="kd">function</span> <span class="nx">addBdayNotifications</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">addBdayNotifications</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">bdayCal</span><span class="p">,</span> <span class="nx">bdayNotifyCal</span><span class="p">;</span>
 
     <span class="kd">var</span> <span class="nx">calendars</span> <span class="o">=</span> <span class="nx">CalendarApp</span><span class="p">.</span><span class="nx">getAllCalendars</span><span class="p">();</span>
@@ -142,7 +140,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3>Conclusion</h3>
 <p>This is not a bullet proof solution for the problem. I would love to know if its possible to do this in different manner without using&nbsp;scripts.</p>
     </div>
-</article>
+<div class="post-footer">
+        <h4>Tags</h4>
+        <div class="post-tags">
+                <a itemprop="keywords" href="http://shortcircuits.io/tag/google-calendar.html">Google Calendar</a>
+                <a itemprop="keywords" href="http://shortcircuits.io/tag/android.html">Android</a>
+                <a itemprop="keywords" href="http://shortcircuits.io/tag/javascript.html">Javascript</a>
+        </div>
+</div></article>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
@@ -156,11 +161,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
-        <div class="push"></div>
     </div>
-
-    <footer>
-        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
-    </footer>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+    </script>
 </body>
 </html>

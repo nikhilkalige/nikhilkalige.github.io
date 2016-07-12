@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Flask-Cache dynamic timeout | ShortCircuits</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
     <link rel="stylesheet" href="http://shortcircuits.io/static/css/index.min.css"/>
     <link rel="shortcut icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
@@ -22,55 +23,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TRCDV4');</script>
 <!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
     <div class="wrapper">
         <header>
-            <a class="title" href="http://shortcircuits.io/" itemprop="url">
-                <span>Short</span><span>Circuits</span>
-                <img class= "logo2" alt="site-logo" src="http://shortcircuits.io/static/images/logo.png">
-            </a>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="http://shortcircuits.io/" itemprop="url">
+                    <img alt="Logo" src="http://shortcircuits.io/static/images/logo.svg" />
+                </a>
+            </div>
             <nav itemprop="breadcrumb">
-                <a href="http://shortcircuits.io/projects">Projects</a>
-                <a href="http://shortcircuits.io/about">About</a>
-                <a href="http://shortcircuits.io/contact">Contact</a>
+                <ul>
+                    <li><a href="http://shortcircuits.io/projects">Projects</a></li>
+                    <li><a href="http://shortcircuits.io/">Blog</a></li>
+                    <li><a href="http://shortcircuits.io/about">About</a></li>
+                </ul>
             </nav>
-            <div class="clearfix"></div>
         </header>
 
         <section id="container" itemprop="http://schema.org/mainContentOfPage">
 <article itemscope itemtype="http://schema.org/Article">
-    <h1 class="title" itemprop="name">
+    <h2 class="title" itemprop="name">
         <a href="http://shortcircuits.io/flask-cache-dynamic-timeout.html" rel="bookmark"
            title="Permalink to Flask-Cache dynamic timeout">Flask-Cache dynamic&nbsp;timeout</a>
-    </h1>
+    </h2>
 
     <div class="post-header">
         <div class="meta-info">
             <div class="post-date">
-                <span>
-                    <time itemprop="dateCreated" datetime="2015-02-13">
-                        February 13, 2015
-                    </time>
+                <span itemprop="dateCreated" datetime="2015-02-13">
+                    February 13, 2015
                 </span>
             </div>
-    <ul class="article-tag">
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/python.html">Python</a></li>
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/flask.html">Flask</a></li>
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/flask-cache.html">Flask-cache</a></li>
-    </ul>
         </div>
     </div>
     <div class="post-body" itemprop="articleBody">
         <p>If you have used <a href="http://flask.pocoo.org/" title="Flask">Flask</a> and are in need of caching views, then you will be familiar with <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a>. <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> provides you with a very simple interface in order to setup cache for your&nbsp;application.</p>
 <p><a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a> extension provides you with a way to set a specific time-out for your view function when you enable cache for that view as&nbsp;follows.</p>
-<div class="highlight"><pre><span class="nd">@cache.cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nd">@cache.cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-  <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>But it does not provide you the ability to set time-outs dynamically. I came across a use case where I was calling a view function with different parameters and wanted the view to be cached until a fixed specific time and in my case it was&nbsp;midnight.</p>
 <p>Below is the implementation of the cached decorator in <a href="https://pythonhosted.org/Flask-Cache/" title="Flask-cache">Flask-cache</a></p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">cached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">key_prefix</span><span class="o">=</span><span class="s">&#39;view/</span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">unless</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">key_prefix</span><span class="o">=</span><span class="s1">&#39;view/</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">unless</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
         <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">decorated_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -93,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <p>You can see that the decorator directly passes the <code>timeout</code> parameter as a parameter to the <code>cache.set</code> function. So this removes the possibility of passing a function to dynamically set the&nbsp;timeout.</p>
 <p>So I decided to write a decorator which decorates the <code>cached</code> decorator. Below is the decorator function I wrote that sets the time-out to 23:59&nbsp;hours.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">cache_timeout</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cache_timeout</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">decorated_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
@@ -106,18 +104,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <p>The <code>cache_timeout</code> decorator can then be used&nbsp;as</p>
-<div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/stats&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;GET&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/stats&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="nd">@cache_timeout</span>
 <span class="nd">@cache.cached</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">stats</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Please note that location of <code>@cache_timeout</code> and <code>@cache.cached()</code> cannot be&nbsp;interchanged.</p>
 <p>Currently the decorator does not accept any parameters, but it can be easily extended to include parameters and perform cache time-out operations to your&nbsp;satisfaction.</p>
     </div>
-</article>
+<div class="post-footer">
+        <h4>Tags</h4>
+        <div class="post-tags">
+                <a itemprop="keywords" href="http://shortcircuits.io/tag/python.html">Python</a>
+                <a itemprop="keywords" href="http://shortcircuits.io/tag/flask.html">Flask</a>
+                <a itemprop="keywords" href="http://shortcircuits.io/tag/flask-cache.html">Flask-cache</a>
+        </div>
+</div></article>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
@@ -131,11 +136,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
-        <div class="push"></div>
     </div>
-
-    <footer>
-        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
-    </footer>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+    </script>
 </body>
 </html>

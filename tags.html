@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>ShortCircuits - Tags</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
     <link rel="stylesheet" href="http://shortcircuits.io/static/css/index.min.css"/>
     <link rel="shortcut icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
@@ -22,18 +23,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TRCDV4');</script>
 <!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
     <div class="wrapper">
         <header>
-            <a class="title" href="http://shortcircuits.io/" itemprop="url">
-                <span>Short</span><span>Circuits</span>
-                <img class= "logo2" alt="site-logo" src="http://shortcircuits.io/static/images/logo.png">
-            </a>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="http://shortcircuits.io/" itemprop="url">
+                    <img alt="Logo" src="http://shortcircuits.io/static/images/logo.svg" />
+                </a>
+            </div>
             <nav itemprop="breadcrumb">
-                <a href="http://shortcircuits.io/projects">Projects</a>
-                <a href="http://shortcircuits.io/about">About</a>
-                <a href="http://shortcircuits.io/contact">Contact</a>
+                <ul>
+                    <li><a href="http://shortcircuits.io/projects">Projects</a></li>
+                    <li><a href="http://shortcircuits.io/">Blog</a></li>
+                    <li><a href="http://shortcircuits.io/about">About</a></li>
+                </ul>
             </nav>
-            <div class="clearfix"></div>
         </header>
 
         <section id="container" itemprop="http://schema.org/mainContentOfPage">
@@ -42,58 +47,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
             <div class="tag-row">
-                <div class="tag-letter">A</div>
+                <h3 class="tag-letter">A</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/android.html">Android</a>
                     <a class="tag" href="http://shortcircuits.io/tag/arduino.html">Arduino</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">B</div>
+                <h3 class="tag-letter">B</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/beagleboard.html">Beagleboard</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">F</div>
+                <h3 class="tag-letter">F</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/flask.html">Flask</a>
                     <a class="tag" href="http://shortcircuits.io/tag/flask-cache.html">Flask-cache</a>
                     <a class="tag" href="http://shortcircuits.io/tag/freertos.html">FreeRTOS</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">G</div>
+                <h3 class="tag-letter">G</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/google-calendar.html">Google Calendar</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">H</div>
+                <h3 class="tag-letter">H</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/hardware.html">Hardware</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">I</div>
+                <h3 class="tag-letter">I</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/iot.html">IOT</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">J</div>
+                <h3 class="tag-letter">J</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/javascript.html">Javascript</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">P</div>
+                <h3 class="tag-letter">P</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/pcb.html">PCB</a>
                     <a class="tag" href="http://shortcircuits.io/tag/php.html">PHP</a>
                     <a class="tag" href="http://shortcircuits.io/tag/product.html">Product</a>
                     <a class="tag" href="http://shortcircuits.io/tag/python.html">Python</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">Q</div>
+                <h3 class="tag-letter">Q</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/qemu.html">Qemu</a>
             </div>
             <div class="tag-row">
-                <div class="tag-letter">U</div>
+                <h3 class="tag-letter">U</h3>
                     <a class="tag" href="http://shortcircuits.io/tag/uefi.html">UEFI</a>
             </div>
 </div>
         </section>
-        <div class="push"></div>
     </div>
-
-    <footer>
-        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
-    </footer>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+    </script>
 </body>
 </html>

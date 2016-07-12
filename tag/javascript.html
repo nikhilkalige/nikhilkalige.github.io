@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>ShortCircuits - Javascript</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
     <link rel="stylesheet" href="http://shortcircuits.io/static/css/index.min.css"/>
     <link rel="shortcut icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://shortcircuits.io/static/images/favicon.ico" type="image/x-icon">
@@ -22,57 +23,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TRCDV4');</script>
 <!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
     <div class="wrapper">
         <header>
-            <a class="title" href="http://shortcircuits.io/" itemprop="url">
-                <span>Short</span><span>Circuits</span>
-                <img class= "logo2" alt="site-logo" src="http://shortcircuits.io/static/images/logo.png">
-            </a>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="http://shortcircuits.io/" itemprop="url">
+                    <img alt="Logo" src="http://shortcircuits.io/static/images/logo.svg" />
+                </a>
+            </div>
             <nav itemprop="breadcrumb">
-                <a href="http://shortcircuits.io/projects">Projects</a>
-                <a href="http://shortcircuits.io/about">About</a>
-                <a href="http://shortcircuits.io/contact">Contact</a>
+                <ul>
+                    <li><a href="http://shortcircuits.io/projects">Projects</a></li>
+                    <li><a href="http://shortcircuits.io/">Blog</a></li>
+                    <li><a href="http://shortcircuits.io/about">About</a></li>
+                </ul>
             </nav>
-            <div class="clearfix"></div>
         </header>
 
         <section id="container" itemprop="http://schema.org/mainContentOfPage">
 <div class="article-tag-copy">
-    <p>
+    <h4>
         Following articles are tagged
         <span class="article-tag">Javascript.</span>
-    </p>
+    </h4>
     <p>
         <a href="http://shortcircuits.io/tags">View all tags.</a>
     </p>
 </div>
 <ul class="post-list">
-<li class="blog-post" itemscope itemtype="http://schema.org/Article">
-    <h1 class="title" itemprop="name">
-        <a href="http://shortcircuits.io/google-calendar-birthday-notifications.html">Google Calendar Birthday Notifications for Android&nbsp;Contacts</a>
-    </h1>
-    <div class="meta-info">
-        <div class="post-date">
-            <span>
-                <time itemprop="dateCreated" datetime="2015-08-07">
-                    August 07, 2015
-                </time>
+<li itemscope itemtype="http://schema.org/Article">
+    <a href="http://shortcircuits.io/google-calendar-birthday-notifications.html">
+        <div>
+            <span class="title" itemprop="name">Google Calendar Birthday Notifications for Android&nbsp;Contacts</span>
+            <span class="date" itemprop="dateCreated" datetime="2015-08-07">
+                August 07, 2015
             </span>
         </div>
-    <ul class="article-tag">
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/google-calendar.html">Google Calendar</a></li>
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/android.html">Android</a></li>
-        <li itemprop="keywords"><a href="http://shortcircuits.io/tag/javascript.html">Javascript</a></li>
-    </ul>
-    </div>
+    </a>
 </li></ul>
 
         </section>
-        <div class="push"></div>
     </div>
-
-    <footer>
-        Powered by <a href="https://github.com/getpelican/pelican" itemprop="url">Pelican</a>. Source available on <a href="https://github.com/nikhilkalige/nikhilkalige.github.io" itemprop="url">Github</a>
-    </footer>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
