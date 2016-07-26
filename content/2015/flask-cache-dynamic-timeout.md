@@ -1,4 +1,4 @@
-Title: Flask-Cache dynamic timeout
+Title: Flask-Cache Dynamic Timeout
 Category: Python
 Tags: Python, Flask, Flask-cache
 Date: 2015-02-13
