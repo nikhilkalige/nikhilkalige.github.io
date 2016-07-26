@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Flask-Cache Stats | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Flask-cache-stats is an extension for flask that extends flask-cache extension in order to provide modest amount of cache usage statistics. It hooks into the existing getter and setter methods of the cache backends to update a log file. The extension can then be registered as a blueprint so that the ...">
+    <meta name="keywords" content="Python,Flask,Flask-cache">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
+    <div class="wrapper">
+        <header>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="/" itemprop="url">
+                    <img alt="Logo" src="/static/images/logo.svg" />
+                </a>
+            </div>
+            <nav itemprop="breadcrumb">
+                <ul>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h2 class="title" itemprop="name">
+        <a href="/flask-cache-stats.html" rel="bookmark"
+           title="Permalink to Flask-Cache Stats">Flask-Cache&nbsp;Stats</a>
+    </h2>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span itemprop="dateCreated" datetime="2016-08-25">
+                    August 25, 2016
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p>Flask-cache-stats is an extension for <a href="http://flask.pocoo.org/">flask</a> that extends <a href="http://pythonhosted.org/Flask-Cache/">flask-cache</a> extension in order to provide modest amount of cache usage statistics. It hooks into the existing getter and setter methods of the cache backends to update a log file. The extension can then be registered as a blueprint so that the stats can be viewed as a&nbsp;table.</p>
+<h2>Usage</h2>
+<p>Flask-cache-stats provides the same <span class="caps">API</span>&#8217;s as flask-cache extension, so you just need to replace all the imports and you are good to&nbsp;go.</p>
+<div class="highlight"><pre><span></span><span class="c1"># replace</span>
+<span class="kn">from</span> <span class="nn">flask_cache</span> <span class="kn">import</span> <span class="n">Cache</span>
+<span class="c1"># with</span>
+<span class="kn">from</span> <span class="nn">flask_cache_stats</span> <span class="kn">import</span> <span class="n">Cache</span>
+</pre></div>
+
+
+<p>The view for displaying the data table can be registered using the <code>CacheStats</code> blueprint. The blueprint is extensible that you can completely customize the behavior of the view. The class provides a <code>delete</code> rest <span class="caps">API</span> that can be used to clear a key from the cache. In order to make use of this <span class="caps">API</span>, you would need to install and setup <a href="https://flask-login.readthedocs.io/en/latest/">flask-login</a>&nbsp;extension.</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CacheStats</span><span class="p">(</span><span class="n">Blueprint</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cache_obj</span><span class="p">,</span> <span class="n">base_template</span><span class="o">=</span><span class="s2">&quot;base.html&quot;</span><span class="p">,</span>
+                 <span class="n">enable_clear_api</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">protect_api</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                 <span class="n">cache_template</span><span class="o">=</span><span class="s2">&quot;stats_view.html&quot;</span><span class="p">,</span>
+                 <span class="n">url_prefix</span><span class="o">=</span><span class="s1">&#39;/cache_stats&#39;</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;CACHE_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;simple&#39;</span>
+<span class="n">cache</span> <span class="o">=</span> <span class="n">Cache</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">stats_bp</span> <span class="o">=</span> <span class="n">CacheStats</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">enable_clear_api</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Below is an example showing the usage of&nbsp;flask-cache-stats.</p>
+<figure><img alt="Msldata cache usage example" src="/images/2016/flask-cache-stats.png" /><figcaption>Msldata cache usage example</figcaption>
+</figure>
+<h3>References and&nbsp;Links</h3>
+<ol>
+<li><a href="https://github.com/nikhilkalige/flask-cache-stats" title="Flask-cache-stats">Flask-cache-stats</a></li>
+</ol>
+    </div>
+<div class="post-footer">
+        <h4>Tags</h4>
+        <div class="post-tags">
+                <a itemprop="keywords" href="/tag/python.html">Python</a>
+                <a itemprop="keywords" href="/tag/flask.html">Flask</a>
+                <a itemprop="keywords" href="/tag/flask-cache.html">Flask-cache</a>
+        </div>
+</div></article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shortcircuits';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+    </div>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
