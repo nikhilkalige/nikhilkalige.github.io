@@ -6,6 +6,7 @@ Summary: SMS Motor Controller is a product that can be used to control and monit
 Tags: Product, Hardware, Arduino, PCB, PHP, IOT
 
 3 phase SMS based motor controller is a product that can be used to control and monitor the status of a irrigation motor(can be used to control anything, but it was targeted to control irrigation motors).
+
 ![SMS Controller Product Image][1]
 
 The product specifications is listed below
@@ -63,14 +64,17 @@ The hardware design of the system went thought multiple iterations before it was
 For designing the PCB for the system, I learnt a multitude of software's owing to my stupidity. I stated with [Eagle](http://www.cadsoftusa.com/), but my company used [OrCAD](http://www.orcad.com/), so I switched. Later I found that [Altium](http://www.altium.com/altium-designer/overview) is very good too and again I switched and started from scratch. And finally I switched back again to [Eagle](http://www.cadsoftusa.com/).
 
 For the prototype board, I went ahead and made them myself using home made ironing and ferric chloride based etching. After having etched so many boards, the practice made be capable of etching pcbs with traces as small as 5 mils. The results of this can be seen below.
+
 ![Prototype PCB Front][4]
+
 ![Prototype PCB Back][5]
 
 So when I was finally ready to go for production, I made use of [Fusion PCB service][6] of [Seeedstudio](http://www.seeedstudio.com/depot/) to get them manufactured. The board had so many passives that hand soldering so many of them was a pain in the ass.
 
 ##Name and Logo
 After much brainstorming with my brother we decided on branding it as ***"AGRI INNOVATE"***. I would also like to thank Niroop from [IronJaw Studios](http://ironjawstudios.com/) for the logo.
-![AgriInnovate Logo][7]
+
+![AgriInnovate Logo]({filename}/images/sms_controller/agri_innovate.jpg =400x)
 
 ##Conclusion
 This project was a very good experience for me. It gave me a perspective as to what goes into developing, producing and marketing a hardware based product. I got to understand the various facets of this process having gone through each of these be myself. The project has a lot of room for improvements. I would like to add more memory for the controller and better isolation between the mains if I decide on making one more revision. So this ends the long rant, thank you for your patience.
@@ -87,4 +91,3 @@ This project was a very good experience for me. It gave me a perspective as to w
    [4]: {filename}/images/sms_controller/proto_front.jpg
    [5]: {filename}/images/sms_controller/proto_back.jpg
    [6]: http://www.seeedstudio.com/service/index.php?r=pcb
-   [7]: {filename}/images/sms_controller/agri_innovate.jpg
