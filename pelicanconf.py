@@ -41,6 +41,7 @@ AUTHOR_SAVE_AS = ''
 
 PAGE_URL = 'projects/{slug}.html'
 PAGE_SAVE_AS = 'projects/{slug}.html'
+MARKUP = ('md', 'ipynb')
 
 DIRECT_TEMPLATES = ('index', 'tags', 'projects')
 JINJA_EXTENSIONS = ['jinja2.ext.loopcontrols', 'jinja2.ext.with_', 'jinja2.ext.do']
@@ -58,8 +59,8 @@ EXTRA_PATH_METADATA = {
     'extras/CNAME': {'path': 'CNAME'}
 }
 
-PLUGIN_PATHS = ['/home/lonewolf/workspace/web/pelican-plugins']
-PLUGINS = ['sitemap', 'optimize_images']
+PLUGIN_PATHS = ['/home/lonewolf/workspace/web/pelican-plugins', './plugins']
+PLUGINS = ['sitemap', 'optimize_images', 'ipynb.markup']
 
 SITEMAP = {
     'format': 'xml',
@@ -76,3 +77,8 @@ SITEMAP = {
 }
 
 TYPOGRIFY = True
+
+# Ipython notebook plugin config
+IPYNB_INCLUDE_CSS = False
+IGNORE_FILES = ['.ipynb_checkpoints']
+IPYNB_USE_META_SUMMARY = True

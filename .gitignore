@@ -54,3 +54,6 @@ docs/_build/
 target/
 cache
 output
+
+# Ipython notebooks
+.ipynb_checkpoints
