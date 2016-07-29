@@ -22,4 +22,5 @@ git stash pop
 rsync -a output/ .
 rm -r output
 git add -A
+git reset -- plugins
 git commit -m "$message"
