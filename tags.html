@@ -56,6 +56,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <a class="tag" href="/tag/beagleboard.html">Beagleboard</a>
             </div>
             <div class="tag-row">
+                <h3 class="tag-letter">C</h3>
+                    <a class="tag" href="/tag/cma-es.html">CMA-ES</a>
+            </div>
+            <div class="tag-row">
                 <h3 class="tag-letter">F</h3>
                     <a class="tag" href="/tag/flask.html">Flask</a>
                     <a class="tag" href="/tag/flask-cache.html">Flask-cache</a>
@@ -94,6 +98,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="tag-row">
                 <h3 class="tag-letter">Q</h3>
                     <a class="tag" href="/tag/qemu.html">Qemu</a>
+                    <a class="tag" href="/tag/quadrotor.html">Quadrotor</a>
             </div>
             <div class="tag-row">
                 <h3 class="tag-letter">S</h3>
@@ -117,6 +122,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     ele.className += "active";
                 }
             }
+        }
+        {
+            let iframes = document.querySelectorAll("[src*='youtube']");
+            function center(ele) {
+                ele.parentElement.style.textAlign = "center";
+            }
+            iframes.forEach(center);
         }
     </script>
 </body>
