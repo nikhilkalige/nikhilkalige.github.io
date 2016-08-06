@@ -2,3 +2,4 @@ ghp-import==0.4.1
 Markdown==2.6.6
 pelican==3.6.3
 smartypants==1.8.6
+mdx-video

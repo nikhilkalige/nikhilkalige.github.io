@@ -2,6 +2,11 @@ from markdown.inlinepatterns import ImagePattern, IMAGE_LINK_RE
 from markdown.extensions import Extension
 import re
 
+"""Extension allows you to specify the width and height of the image in markdown
+    ![AgriInnovate Logo]({filename}/images/sms_controller/agri_innovate.jpg =400x600)
+    ![AgriInnovate Logo]({filename}/images/sms_controller/agri_innovate.jpg =400x)
+"""
+
 
 class ImageExtensions(Extension):
     def extendMarkdown(self, md, md_globals):
