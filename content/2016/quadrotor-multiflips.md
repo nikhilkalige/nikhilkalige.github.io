@@ -1,6 +1,11 @@
-# Quadrotor Flips Optimization
+Title: Quadrotor Flips Optimization using CMA-ES
+Category: Machine Learning
+Date: 2016-08-05
+Tags: Python, Quadrotor, CMA-ES
+Slug: quadrotor-flips-optimization
 
-Quadrotors have fascinated me for a long time. There has been an enormous amount of research with these small machines leading to a lot of cool experiments and products over the past few years. Machine learning techniques have been used in a lot of research papers to optimize the flight. I wanted to learn how you can perform the task using Python and apply machine learning techniques. I started hunting for articles on this topic and among the humongous list, I found that I liked the paper **A Simple Learning Strategy for High-Speed Quadrocopter Multi-Flips** the most. The article is written by *Sergei Lupashin, Angela Schollig, Michael Sherback, Raffaello D’Andrea* from group Flying Machine Arena group.
+
+Quadrotors have fascinated me for a long time. There has been an enormous amount of research with these small machines leading to a lot of cool experiments and products over the past few years. Machine learning techniques have been used in a lot of research papers to optimize the flight. I wanted to learn how you can perform the task using Python and apply machine learning techniques. I started hunting for articles on this topic and among the humongous list, I found that I liked the paper [A Simple Learning Strategy for High-Speed Quadrocopter Multi-Flips] [1] the most. The article is written by *Sergei Lupashin, Angela Schollig, Michael Sherback, Raffaello D’Andrea* from group [Flying Machine Arena](http://flyingmachinearena.org/).
 
 Acrobatic maneuvers are tough to perform on quadrotors as they require precise control over the thrust that is applied to the motors. The paper describes how machine learning technique can be used to perform flips along one of the axes at a high rotation rate of 1600 degrees/second and return to the starting position without any human intervention. Let me give a very brief overview the approach used in the paper.
 
@@ -8,23 +13,26 @@ Quadrotors are sophisticated devices that are influenced by a lot of factors. So
 
 The flip is performed in 5 steps and is defined by five parameters, and simplistically they are the acceleration and period for which the force is applied. These form the values that are optimized to gain better performance. Initially, a rough guess of the initial values of the five control parameters is provided to the optimization algorithm. The roughly estimated parameters are fed to an optimizer that is running an algorithm like CMA-ES to obtain the best set of values. The algorithm makes use of the simple low order quadrotor model to perform the optimization. The optimal parameters obtained from the optimizer are then fed to the quadrotor to carry out the flips in real time.
 
-The entire algorithm is implemented using Python. The quadrotor model makes of [numpy]() array methods and `odeint` from [scipy]() to perform the integration. CMA-ES is used as the optimization library, and the implementation by [deap]() framework is used. The library can be found on [github](https://github.com/nikhilkalige/quadrotor).
+The entire algorithm is implemented using Python. The quadrotor model makes of [numpy](http://www.numpy.org/) array methods and `odeint` from [scipy](https://www.scipy.org/) to perform the integration. CMA-ES is used as the optimization library, and the implementation by [deap](https://github.com/DEAP/deap) framework is used. The library can be found on [github](https://github.com/nikhilkalige/quadrotor).
 
-The generated data can be visualized using [matplotlib]() or through [blender](). You can see the results from an incomplete simulation using both the visualization methods
+The generated data can be visualized using [matplotlib](http://matplotlib.org/) or through [blender](http://blender.org/). You can see the results from an incomplete simulation using both the visualization methods
 
-![Matplotlib Based 3d Plot]()
+### Matplotlib Result
+![Matplotlib Based 3d Plot]({filename}/images/2016/quadrotor_matplotlib.gif =530x)
 
-![Animation using Blender]()
+### Blender Animation
+https://www.youtube.com/watch?v=aoSr-yHOgnQ
 
-# Conclusion
+### Conclusion
 I would like to point out that these are my personal opinions and I you have any valid concerns related to the post please let me know. The library is modular and hence feel free to utilize it in any of your ventures.
 
-#References and Links
+### References and Links
 1. A Simple Learning Strategy for High-Speed Quadrocopter Multi-Flips
- - Sergei Lupashin, Angela Sch ̈ollig, Michael Sherback, Raffaello D’Andrea
+    - Sergei Lupashin, Angela Sch ̈ollig, Michael Sherback, Raffaello D’Andrea
 2. Adaptive Open-Loop Aerobatic Maneuvers for Quadrocopters
- - Sergei Lupashin, Rafaello D’Andrea
+    - Sergei Lupashin, Rafaello D’Andrea
 3. Adaptive fast open-loop maneuvers for quadrocopters
- - Sergei Lupashin, Rafaello D’Andrea
+    - Sergei Lupashin, Rafaello D’Andrea
 
 
+   [1]: http://flyingmachinearena.org/wp-content/publications/2010/lupashin2010-AdaptiveFlips.pdf
