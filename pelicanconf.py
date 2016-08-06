@@ -64,7 +64,7 @@ EXTRA_PATH_METADATA = {
 }
 
 PLUGIN_PATHS = ['/home/lonewolf/workspace/web/pelican-plugins', './plugins']
-PLUGINS = ['sitemap', 'optimize_images', 'ipynb.markup']
+PLUGINS = ['sitemap', 'optimize_images', 'ipynb.markup', 'series']
 
 SITEMAP = {
     'format': 'xml',
