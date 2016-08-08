@@ -2,7 +2,7 @@ Title: Flask-Cache Stats
 Project: True
 Category: Python
 Tags: Python, Flask, Flask-cache
-Date: 2016-08-25
+Date: 2016-07-25
 Slug: flask-cache-stats
 
 Flask-cache-stats is an extension for [flask](http://flask.pocoo.org/) that extends [flask-cache](http://pythonhosted.org/Flask-Cache/) extension in order to provide modest amount of cache usage statistics. It hooks into the existing getter and setter methods of the cache backends to update a log file. The extension can then be registered as a blueprint so that the stats can be viewed as a table.
