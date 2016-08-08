@@ -1,4 +1,3 @@
-basketball-robot-design.md
 Title: Hardware Design
 Slug: basketball-robot-design
 Series: Basketball Robot
@@ -17,5 +16,7 @@ https://youtu.be/17umg0rEZbU
 
 I made use of Bosch Aluminium Profiles to design the stand that could stably support the arms and not tip over during the high speed throwing motion. I also added a big red emergency stop button to keep my professor happy. The rendered images of the model are below.
 
-![Basketball Robot - Front View]({filename}/)
+![Basketball Robot - Front View]({filename}/images/2016/basketball-robot-front.jpg)
+
+![Basketball Robot - Perspective View]({filename}/images/2016/basketball-robot-perspective.jpg)
 
