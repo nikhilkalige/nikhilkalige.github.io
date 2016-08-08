@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hardware Design | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Bike POV is a design to create fancy animation on a bicycle wheel by mounting multiple RGB LED’s. Persistence of vision (POV) is a phenomenon by which multiple images which are moving fast combine to form a single image in the human brain. POV’s for bicycle wheels are ...">
+    <meta name="keywords" content="PCB,Arm">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
+    <div class="wrapper">
+        <header>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="/" itemprop="url">
+                    <img alt="Logo" src="/static/images/logo.svg" />
+                </a>
+            </div>
+            <nav itemprop="breadcrumb">
+                <ul>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
+        <a href="/bike-pov-hardware-design.html" rel="bookmark"
+           title="Permalink to Bike POV 1: Hardware Design"> Bike POV 1: Hardware&nbsp;Design</a>
+    </h1>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span itemprop="dateCreated" datetime="2016-08-06">
+                    August 06, 2016
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p>Bike <span class="caps">POV</span> is a design to create fancy animation on a bicycle wheel by mounting multiple <span class="caps">RGB</span> <span class="caps">LED</span>&#8217;s. Persistence of vision (<span class="caps">POV</span>) is a phenomenon by which multiple images which are moving fast combine to form a single image in the human brain. <span class="caps">POV</span>&#8217;s for bicycle wheels are not new, and there are already tried and tested products that you can buy that are pricey. I am an electronics engineer, and I love twiddling with circuits and buying one of the shelves at least in this case would be no fun. I am documenting the development process in this post and a few other posts in the&nbsp;future.</p>
+<h2>Drawing&nbsp;Board</h2>
+<p>I had first thoughts about designing this when I came across a product on the internet, and I was fascinated by it, and I wanted to show off similar disco lights on my bike too as I rode through to college. I initially started with a four arm design that would have a total of 256 <span class="caps">LED</span>&#8217;s, but then I felt that would make it complicated with regards to inter-board connections. As a result, I decided on a two arm board design with 128 <span class="caps">LED</span>&#8217;s, i.e. 64 <span class="caps">LED</span>&#8217;s per arm with 32 on each face of the&nbsp;board.</p>
+<figure><img alt="Bike POV mounted on a wheel" src="/images/2016/bike-pov-render.png" /><figcaption>Bike <span class="caps">POV</span> mounted on a wheel</figcaption>
+</figure>
+<h2><span class="caps">PCB</span>&nbsp;Design</h2>
+<p><a href="https://cadsoft.io/">Eagle</a> has been the standard <span class="caps">PCB</span> design tool used by hobbyists for a long period, and currently there are is a lot of work going on <a href="http://kicad-pcb.org/">KiCAD</a>, a open source initiative. I have never tried KiCAD, but I have been using Eagle for a long time. During the time I started with this design, I came across <a href="http://circuitmaker.com/">CircuitMaker</a> from <a href="http://www.altium.com/">Altium</a> that was still in the early beta stages. I had tried Altium in the past, and the similarities between the two tools convinced me to take it for a spin, and I went ahead and designed the board with CircuitMaker. I would say that I am impressed with the tools that are provided by the software, and I definitely would recommend you to try it as long as you are not paranoid about your data being on the&nbsp;cloud.</p>
+<h2>System&nbsp;Design</h2>
+<p>At the core is a Cortex-M4 microcontroller <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus/stm32f4-series/stm32f411/stm32f411re.html"><span class="caps">STM32F411RET6</span></a> from STMicoelectroincs. It runs at 100MHz and has 128 kB of <span class="caps">RAM</span> and 512 kB of flash. The deal breaker was that it was the same chip that was used in a Nucleo development board, and this would help me in prototyping my code. The power supply was designed using <a href="http://www.ti.com/product/TPS62095RGTR"><span class="caps">TPS62095</span></a> from Texas Instruments. It is buck regulator capable of delivering 4A and can operate on 5V input power supply. Since we will be driving <span class="caps">LED</span>&#8217;s and we do not have the necessary io&#8217;s to directly control, I used <a href="http://www.ti.com/product/TLC5955DCAR"><span class="caps">TLC5955</span></a> also from Texas Instruments. <span class="caps">TLC5955</span> is 48 channel <span class="caps">LED</span> driver with brightness control, and it can control 16 <span class="caps">RGB</span> <span class="caps">LED</span>&#8217;s. I used a hall effect sensor to monitor the speed of the wheel. I also had a <span class="caps">MPU6050</span> included so that I could also use the gyroscope to measure the speed. I additionally added a few features like a sd card and few pinouts for supporting a Bluetooth&nbsp;module.</p>
+<p>I got the <span class="caps">PCB</span> manufactured by Seeedstudio, and you can see the results&nbsp;below.</p>
+<figure><img alt="Rendered PCB - Top" src="/images/2016/bike-pov-top.png" /><figcaption>Rendered <span class="caps">PCB</span> - Top</figcaption>
+</figure>
+<figure><img alt="Rendered PCB - Bottom" src="/images/2016/bike-pov-bottom.png" /><figcaption>Rendered <span class="caps">PCB</span> - Bottom</figcaption>
+</figure>
+    </div>
+<div class="post-footer">
+        <h4>Posts in this series</h4>
+        <div class="post-tags">
+                    <a href='/bike-pov-power-supply.html'>
+                        Bike POV 2: Power&nbsp;Supply
+                    </a>
+        </div>
+        <h4>Tags</h4>
+        <div class="post-tags">
+                <a itemprop="keywords" href="/tag/pcb.html">PCB</a>
+                <a itemprop="keywords" href="/tag/arm.html">Arm</a>
+        </div>
+</div></article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shortcircuits';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+    </div>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+        {
+            let iframes = document.querySelectorAll("[src*='youtube']");
+            function center(ele) {
+                ele.parentElement.style.textAlign = "center";
+            }
+            iframes.forEach(center);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hardware Design | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Robots are performing complex tasks now which would have been considered not possible a few years back. Robots need a mixture of hardware and software skills that appeal to me as an electronics engineer similar to the embedded systems field. So when the time came for me to decide on ...">
+    <meta name="keywords" content="Robot,Machine-Learning,AAAI">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
+    <div class="wrapper">
+        <header>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="/" itemprop="url">
+                    <img alt="Logo" src="/static/images/logo.svg" />
+                </a>
+            </div>
+            <nav itemprop="breadcrumb">
+                <ul>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
+        <a href="/basketball-robot-design.html" rel="bookmark"
+           title="Permalink to Basketball Robot 1: Hardware Design"> Basketball Robot 1: Hardware&nbsp;Design</a>
+    </h1>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span itemprop="dateCreated" datetime="2016-08-07">
+                    August 07, 2016
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p>Robots are performing complex tasks now which would have been considered not possible a few years back. Robots need a mixture of hardware and software skills that appeal to me as an electronics engineer similar to the embedded systems field. So when the time came for me to decide on a topic for my master&#8217;s thesis, I was euphoric when me and my advisor <a href="http://henibenamor.weebly.com/">Dr.Heni Ben Amor</a> decided on building a basketball playing&nbsp;robot.</p>
+<p>Single armed robots have seen a lot of research in the past and the present. Dual-armed robots like Baxter are currently used in a lot of research. Our lab already had a Baxter, but the task at hand needed a machine capable of delivering more agility than you can get from a Baxter. Robots are expensive, and I had to choose the components such that any student in the future could also utilize it for his research&nbsp;experiments.</p>
+<p><a href="http://www.robotis.com/xe/dynamixel_en">Dynamixel</a> servos from <a href="http://en.robotis.com/index/">Robotis</a> are one of the standard servos used in the research field. <a href="http://www.robotis.com/xe/DynamixelPro_en">Dynamixel Pro</a> servos provide better precision than their older counterpart. We decided on using the Manipulator-H arms that use Dynamixel Pro servos as their engine. These servos have an accuracy of ~0.0007 degrees and rotate at a speed of 180 degrees/second. The arms are capable of lifting a load of 5&nbsp;kg.</p>
+<h3>Pasta Robot Demo at <span class="caps">AAAI</span>-2016</h3>
+<p>
+<iframe allowfullscreen="true" frameborder="0" height="450" src="//www.youtube.com/embed/17umg0rEZbU" width="800"></iframe>
+</p>
+<p>I made use of Bosch Aluminium Profiles to design the stand that could stably support the arms and not tip over during the high speed throwing motion. I also added a big red emergency stop button to keep my professor happy. The rendered images of the model are&nbsp;below.</p>
+<figure><img alt="Basketball Robot - Front View" src="/images/2016/basketball-robot-front.jpg" /><figcaption>Basketball Robot - Front View</figcaption>
+</figure>
+<figure><img alt="Basketball Robot - Perspective View" src="/images/2016/basketball-robot-perspective.jpg" /><figcaption>Basketball Robot - Perspective View</figcaption>
+</figure>
+    </div>
+<div class="post-footer">
+        <h4>Posts in this series</h4>
+        <div class="post-tags">
+                    <a href='/basketball-robot-simulation.html'>
+                        Basketball Robot 2: Software and&nbsp;Simulation
+                    </a>
+        </div>
+        <h4>Tags</h4>
+        <div class="post-tags">
+                <a itemprop="keywords" href="/tag/robot.html">Robot</a>
+                <a itemprop="keywords" href="/tag/machine-learning.html">Machine-Learning</a>
+                <a itemprop="keywords" href="/tag/aaai.html">AAAI</a>
+        </div>
+</div></article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shortcircuits';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+    </div>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+        {
+            let iframes = document.querySelectorAll("[src*='youtube']");
+            function center(ele) {
+                ele.parentElement.style.textAlign = "center";
+            }
+            iframes.forEach(center);
+        }
+    </script>
+</body>
+</html>

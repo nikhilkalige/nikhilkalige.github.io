@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Software and Simulation | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Gazebo and V-REP are two of the most prominent simulation tools used by roboticists. I am inclined towards Gazebo. Gazebo is under active development and also has good tutorials and support through its online forum. Also, the integration with ROS is superb, and this makes it easier to integrate ...">
+    <meta name="keywords" content="ROS,Gazebo">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
+    <div class="wrapper">
+        <header>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="/" itemprop="url">
+                    <img alt="Logo" src="/static/images/logo.svg" />
+                </a>
+            </div>
+            <nav itemprop="breadcrumb">
+                <ul>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
+        <a href="/basketball-robot-simulation.html" rel="bookmark"
+           title="Permalink to Basketball Robot 2: Software and Simulation"> Basketball Robot 2: Software and&nbsp;Simulation</a>
+    </h1>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span itemprop="dateCreated" datetime="2016-08-08">
+                    August 08, 2016
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p><a href="http://gazebosim.org/">Gazebo</a> and <a href="http://www.coppeliarobotics.com/">V-<span class="caps">REP</span></a> are two of the most prominent simulation tools used by roboticists. I am inclined towards Gazebo. Gazebo is under active development and also has good tutorials and support through its online forum. Also, the integration with <a href="http://www.ros.org/"><span class="caps">ROS</span></a> is superb, and this makes it easier to integrate your robot into the simulation ecosystem. Gazebo also supports multiple physics engines&nbsp;too.</p>
+<p>The software stack for the basketball robot is written using <span class="caps">ROS</span> with a mixture of C++ performing the low-level communication with the hardware and Python used to integrate the various components like optimization, plotting, simulation, etc. The communication to the arm is through a <span class="caps">USB</span>-to-Serial&nbsp;port.</p>
+<p><a href="https://github.com/ros-controls/ros_control"><span class="caps">ROS</span>-Control</a> is a group of packages that expose a real-time control loop to communicate with the hardware. It also has lots of additional utilities that make it easier to write specific services and actions like joint trajectory control. I have extensively used <span class="caps">ROS</span>-Control for interfacing with the&nbsp;arms.</p>
+<p>Simulation comes in handy when you are trying to optimize the parameters of the experiment. My experiments usually take ~12 hours to complete, but with it running on Gazebo, it concludes in ~3 hours and most importantly without any supervision. The initial task of getting the arms moving was very easy, but then getting it to pick up the ball was very hard to achieve. If you run the simulation without setting the right parameters for the ball, the moment the arm comes in contact with the ball, the arms start to jitter, and the arms will be unable to grip the&nbsp;ball.</p>
+<p>The ball needs to be smooth for it work properly. Gazebo&#8217;s primary physics engine <span class="caps">ODE</span> does provide some support for soft bodies. Other physics engines like Dart and Bullet has much better support for soft objects. <span class="caps">ODE</span> has two parameters <code>soft_cfm</code> and <code>soft_erp</code> that allow controlling the smoothness, but according to my knowledge these two parameters are currently unused and have no effect on the simulation. These two parameters are in turn calculated using <code>KP</code> and <code>KD</code> which are the spring stiffness and damping coefficients. These two parameters need to be chosen appropriately because if the ball is too smooth, then the contacts will sink through the ball. I was finally able to get the parameters right and run simulations without any trouble as you can see the results&nbsp;below.</p>
+<p>
+<iframe allowfullscreen="true" frameborder="0" height="450" src="//www.youtube.com/embed/vbEwS89Vjeo" width="800"></iframe>
+</p>
+<h3>Links</h3>
+<ol>
+<li><a href="https://github.com/nikhilkalige/robotis_manipulator"><span class="caps">ROS</span> Arm&nbsp;Driver</a></li>
+<li><a href="https://github.com/nikhilkalige/basketball_robot">Basketball&nbsp;Robot</a></li>
+</ol>
+    </div>
+<div class="post-footer">
+        <h4>Posts in this series</h4>
+        <div class="post-tags">
+                    <a href='/basketball-robot-design.html'>
+                        Basketball Robot 1: Hardware&nbsp;Design
+                    </a>
+        </div>
+        <h4>Tags</h4>
+        <div class="post-tags">
+                <a itemprop="keywords" href="/tag/ros.html">ROS</a>
+                <a itemprop="keywords" href="/tag/gazebo.html">Gazebo</a>
+        </div>
+</div></article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shortcircuits';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+    </div>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+        {
+            let iframes = document.querySelectorAll("[src*='youtube']");
+            function center(ele) {
+                ele.parentElement.style.textAlign = "center";
+            }
+            iframes.forEach(center);
+        }
+    </script>
+</body>
+</html>

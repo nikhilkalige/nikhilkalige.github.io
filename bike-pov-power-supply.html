@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Power Supply | ShortCircuits</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento:400,700|Quattrocento+Sans:400,400i,700|Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.min.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Power supply design is a crucial part of any circuit design. A USB power bank would provide the input for my design and the circuit required a constant voltage of 3.3v. The requirement was 5 - 5.5v to 3.3 - 3.6v. I needed a very efficient regulator capable ...">
+    <meta name="keywords" content="Power,TI">
+    <meta name="author" content="Nikhil K">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TRCDV4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRCDV4');</script>
+<!-- End Google Tag Manager -->
+    <div class="gradient-overlay"></div>
+    <div class="wrapper">
+        <header>
+            <div class="header clearfix">
+            <div class="logo">
+                <a href="/" itemprop="url">
+                    <img alt="Logo" src="/static/images/logo.svg" />
+                </a>
+            </div>
+            <nav itemprop="breadcrumb">
+                <ul>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="container" itemprop="http://schema.org/mainContentOfPage">
+<article itemscope itemtype="http://schema.org/Article">
+    <h1 class="title" itemprop="name">
+        <a href="/bike-pov-power-supply.html" rel="bookmark"
+           title="Permalink to Bike POV 2: Power Supply"> Bike POV 2: Power&nbsp;Supply</a>
+    </h1>
+
+    <div class="post-header">
+        <div class="meta-info">
+            <div class="post-date">
+                <span itemprop="dateCreated" datetime="2016-08-07">
+                    August 07, 2016
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="post-body" itemprop="articleBody">
+        <p>Power supply design is a crucial part of any circuit design. A <span class="caps">USB</span> power bank would provide the input for my design and the circuit required a constant voltage of 3.3v. The requirement was 5 - 5.5v to 3.3 - 3.6v. I needed a very efficient regulator capable of delivering very high current, as I 64 <span class="caps">LED</span>&#8217;s across two boards that needed to be powered. I am biased towards Texas Instruments and thus choose <a href="http://www.ti.com/product/TPS62095RGTR"><span class="caps">TPS62095</span></a>.</p>
+<p><a href="http://www.ti.com/product/TPS62095RGTR"><span class="caps">TPS62095</span></a> is a very small (3mm x 3mm) step-down buck converter capable of supplying a current of 4A. It has a switching frequency of 1.4 MHz and an efficiency of 95%. It has an adjustable output voltage which you can configure using a resistor divider. But the problem is that it comes in a <span class="caps">VQFN</span>&nbsp;package.</p>
+<h2>Problems</h2>
+<p>I had received the five boards, and I was excited about powering them up. I was aware that soldering the power <span class="caps">IC</span> was going to be difficult, but it developed into a huge problem. I tried two methods for soldering them, by hand and also using a stencil and an oven. But after both the methods, I was unsuccessful in getting the appropriate power from the circuit. I was of the opinion that the problem was in the soldering, and it is hard to check for bad solder joints as you cannot see the pads. The schematic and various imperfect waveforms are&nbsp;below.</p>
+<figure><img alt="Power supply schematic" src="/images/2016/bike-pov-schematic.png" width="800" /><figcaption>Power supply schematic</figcaption>
+</figure>
+<figure><img alt="Board power section" src="/images/2016/bike-pov-power-section.jpg" width="650" /><figcaption>Board power section</figcaption>
+</figure>
+<figure><img alt="SW pin signal output" src="/images/2016/bike-pov-sw1.png" /><figcaption><span class="caps">SW</span> pin signal output</figcaption>
+</figure>
+<figure><img alt="SW pin signal - zoomed " src="/images/2016/bike-pov-sw2.png" /><figcaption><span class="caps">SW</span> pin signal - zoomed </figcaption>
+</figure>
+<figure><img alt="Vout AC ripple" src="/images/2016/bike-pov-vout-ac.png" /><figcaption>Vout <span class="caps">AC</span> ripple</figcaption>
+</figure>
+<figure><img alt="Vout DC" src="/images/2016/bike-pov-vout-dc.png" /><figcaption>Vout <span class="caps">DC</span></figcaption>
+</figure>
+<p>You can see that the output is at 3.12v, but the results were very inconsistent. I went on and destroyed four of five boards. I then joined hands with my Eddy who had a toaster for my final attempt at restoring the power. I was finally able to power the circuit. I have not yet soldered the rest of the parts, and I will let you know of the results, once I have&nbsp;completed.</p>
+    </div>
+<div class="post-footer">
+        <h4>Posts in this series</h4>
+        <div class="post-tags">
+                    <a href='/bike-pov-hardware-design.html'>
+                        Bike POV 1: Hardware&nbsp;Design
+                    </a>
+        </div>
+        <h4>Tags</h4>
+        <div class="post-tags">
+                <a itemprop="keywords" href="/tag/power.html">Power</a>
+                <a itemprop="keywords" href="/tag/ti.html">TI</a>
+        </div>
+</div></article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shortcircuits';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+    </div>
+    <script type="text/javascript">
+        {
+            let class_names = ["projects", "blog", "about"];
+            let li_elements = document.getElementsByTagName("nav")[0]
+                .getElementsByTagName("li");
+            for(let [idx, value] of class_names.entries()) {
+                if(document.getElementById(value)) {
+                    let ele = li_elements[idx];
+                    ele.className += "active";
+                }
+            }
+        }
+        {
+            let iframes = document.querySelectorAll("[src*='youtube']");
+            function center(ele) {
+                ele.parentElement.style.textAlign = "center";
+            }
+            iframes.forEach(center);
+        }
+    </script>
+</body>
+</html>
