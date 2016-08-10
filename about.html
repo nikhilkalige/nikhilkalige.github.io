@@ -44,12 +44,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <section id="container" itemprop="http://schema.org/mainContentOfPage">
 
         <div class="info-content" id="about" itemscope itemtype="http://schema.org/AboutPage">
-            <p>Hi, I am Nikhil K. I am a Electronics Engineer pursuing my Master&#8217;s in <a href="https://asu.edu">Arizona State&nbsp;University</a></p>
-            <p>I am a technical enthusiast, i usually work on embedded systems close to the hardware end. Besides doing electronicky stuff, i write lots of code mostly in Python and&nbsp;Javascript</p>
-            <p>If you leave out the technical jargon, i read a lot a novels(only fantasy pleasee). Besides i like to model stuff in Solidworks. I also enjoy woodworking, sketching and hiking in the&nbsp;woods</p>
+            <p>Hi, I am Nikhil K. I am a Electronics Engineer pursuing my Master’s in Robotics at <a href="https://asu.edu">Arizona State&nbsp;University</a></p>
+            <p>I enjoy building products, so you can usually find me etching <span class="caps">PCB</span>&#8217;s and tinkering with circuits and debugging my Embedded C code. I also try to get involved with open source projects that are built using Python and&nbsp;Javascript.</p>
+            <p>I am a big fan of fantasy and science fiction novels, and you can find a few of the books I have read <a href="http://lonewolf.libib.com/">here</a>. I also enjoy woodworking, sketching and&nbsp;hiking.</p>
+            <img class="portrait" src="static/images/dp.png">
         </div>
         <div class="contact-content" itemscope itemtype="http://schema.org/Person">
-            <p>Whether you would like to get extra information on any of my work, ask me about this site or just say hello then I would love to hear from&nbsp;you.</p>
+            <p>Whether you would like to get extra information on any of my work, ask me about this site or just say hello, then I would love to hear back from&nbsp;you.</p>
             <meta itemprop="name" content="Nikhil K">
             <a class="mail" href="mailto:nikhilkalige@gmail.com" itemprop="email">Email nikhilkalige@gmail.com </a>
         </div>
@@ -66,25 +67,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="colophon">
             <h2>Colophon</h2>
             <p>This is a static website and the static pages were generated using <a href="http://blog.getpelican.com/" alt="Pelican" itemprop="url">Pelican - a python based static site generator</a>. The site is currently hosted on Github. I&#8217;m using Quattrocento, Quattorcento Sans and Inconsolata fonts served by&nbsp;Google.</p>
-            <p>The complete site was coded using <a href="http://www.sublimetext.com/3" alt="Sublime Text 3">Sublime Text 3</a> and <a href="http://emmet.io/" alt="emmet" itemprop="url">Emmet</a> which makes life a lot easier. The source for the theme can be found at <a href="http://github.com/nikhilkalige/mytheme" alt="shortcircuits theme" itemprop="url">github</a>. Feel free to tinker with&nbsp;it.</p>
+            <p>The source for the theme can be found at <a href="http://github.com/nikhilkalige/mytheme" alt="shortcircuits theme" itemprop="url">github</a>. Feel free to tinker with&nbsp;it.</p>
         </div>
     
         </section>
     </div>
     <script type="text/javascript">
         {
-            let class_names = ["projects", "blog", "about"];
-            let li_elements = document.getElementsByTagName("nav")[0]
+            var class_names = ["projects", "blog", "about"];
+            var li_elements = document.getElementsByTagName("nav")[0]
                 .getElementsByTagName("li");
-            for(let [idx, value] of class_names.entries()) {
-                if(document.getElementById(value)) {
-                    let ele = li_elements[idx];
+
+            for (var i = class_names.length - 1; i >= 0; i--) {
+                if(document.getElementById(class_names[i])) {
+                    var ele = li_elements[i];
                     ele.className += "active";
                 }
             }
         }
         {
-            let iframes = document.querySelectorAll("[src*='youtube']");
+            var iframes = document.querySelectorAll("[src*='youtube']");
             function center(ele) {
                 ele.parentElement.style.textAlign = "center";
             }
